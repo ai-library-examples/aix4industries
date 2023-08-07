@@ -1,0 +1,924 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Concrete Compressive Strength &#8212; KDD Demo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'books/concrete_comprehensive_strength';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Energy Load Forecasting" href="energy_load_forecasting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    AI Explainability 360 Toolkit for Time-Series and Industrial Use Cases
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Setup Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="engine_fault_detection.html">Engine Fault Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy_load_forecasting.html">Energy Load Forecasting</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Concrete Compressive Strength</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Trusted-AI/AIX360/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Trusted-AI/AIX360/tree/master/issues/new?title=Issue%20on%20page%20%2Fbooks/concrete_comprehensive_strength.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/books/concrete_comprehensive_strength.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Concrete Compressive Strength</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-contrastive-explanation">Nearest Neighbor Contrastive explanation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grouped-conditional-expectation-explainer">Grouped Conditional Expectation Explainer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-classification-model">Train Classification Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-nearestneighborcontrastiveexplainer-with-black-box-model">Initialize NearestNeighborContrastiveExplainer With Black Box Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-nncontrastive-explanation">Compute NNContrastive Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-nearestneighborcontrastive-explanation">Plot NearestNeighborContrastive Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-regression-model">Train Regression Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-individual-conditional-expectation-ice">Compute Individual Conditional Expectation (ICE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-ice-explanation">Plot ICE Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-grouped-conditional-expectation-gce">Compute Grouped Conditional Expectation (GCE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-gce-explanation">Plot GCE Explanation</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="concrete-compressive-strength">
+<span id="ccs-references-introduction"></span><h1>Concrete Compressive Strength<a class="headerlink" href="#concrete-compressive-strength" title="Permalink to this heading">#</a></h1>
+<p>The strength properties of concrete, such as compressive strength depend on many process variables (such as curation time), material feed (binder, slag, water etc.) and their quality. It is important for concrete to possess the right compressive strength depending on the application. For example, concrete used in the construction of roads and bridges, require much higher strength than for example, the concrete used for steps and pavements. Contractors who are typically the buyers require concrete with strict specifications, and process engineers in the concrete mixing plant need to make sure to use appropriate process parameters and feeds are used to produce the right concrete blocks. Since this process happens in batch mode, samples from each batch is tested to ensure the concrete meets the strength requirements.</p>
+<p>Testing concrete samples for right compressive strength requires a destructive form of testing. Often it is difficult to be certain about the right combination of feeds and process parameters, especially if the ingredients are sourced differently. Applying AI / ML capabilities to estimate the concrete strength is one of the analytic insights process engineers could use effectively to determine the right combination of process parameters that is most likely to result in the right compressive strength. This also helps in avoiding destroying samples, wastage, thereby increase yield and expensive recalls. In this demo, we cover a use case on concrete comprehensive strength prediction using the data from <a class="reference external" href="https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength">UCI repository</a>.</p>
+<p>The dataset contains 8 columns such as cement, water, superplasticizer etc. that are used in the process, and concrete comprehensive strength as target variable. We consider regression and classification problems on the target variable. Regression model predicts the concrete comprehensive strength for a given input mixture combination. Classification model predicts whether the given input mixture combination outputs acceptable concrete comprehensive strengh or not.</p>
+<p>For this tutorial, we use gradient boost classifier and regressor models. We use aix360’s <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/nncontrastive/nncontrastive.py">Nearest Neighborhood Contrastive Explainer (NNContrastiveExplainer)</a> to identify viable mixture combination for acceptable concrete comprehensive strength. Further, we perform detailed analysis on impact of the ingredients on the predicted concrete comprehensive strengh using <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/gce/gce.py">Grouped Conditional Expectation Explainer (GroupedCEExplainer)</a>.</p>
+<p>For more algorithmic details on NNContrastive and GroupedCE, you can refer to <a class="reference internal" href="#ccs-references-nncontrastive"><span class="std std-ref">Nearest Neighbor Contrastive explanation</span></a> and <a class="reference internal" href="#ccs-references-gce"><span class="std std-ref">Grouped Conditional Expectation Explainer</span></a> sections respectively.</p>
+<p>To start this hands on demo, skip to <a class="reference internal" href="#ccs-references-instructions"><span class="std std-ref">Instructions</span></a>.</p>
+<section id="nearest-neighbor-contrastive-explanation">
+<span id="ccs-references-nncontrastive"></span><h2>Nearest Neighbor Contrastive explanation<a class="headerlink" href="#nearest-neighbor-contrastive-explanation" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Nearest Neighbor Contrastive explanation method is an exemplar based constrastive explanation method which provides feasible or realizable contrastive instances.</p></li>
+<li><p>For a given model, exemplar/representative dataset, and query point, it computes the closest point, within the representative dataset, that has a different prediction compared to the query point (with respect to the model).</p></li>
+<li><p>The closeness is defined using an AutoEncoder and ensures a robust and faithful neighborhood even in case of high-dimensional feature space or noisy datasets.</p></li>
+<li><p>This explanation method can also be used in the model-free case, where the model predictions are replaced by (user provided) ground truth.</p></li>
+</ul>
+</section>
+<section id="grouped-conditional-expectation-explainer">
+<span id="ccs-references-gce"></span><h2>Grouped Conditional Expectation Explainer<a class="headerlink" href="#grouped-conditional-expectation-explainer" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Grouped Conditional Expectation (GroupedCE) Explainer is a local, model-agnostic explainer that generates Grouped Conditional Expectation (CE) plots for a given instance and a set of features.</p></li>
+<li><p>The set of features can be either a subset of the input covariates defined by the user or the top K features based on the importance provided by a global explainer (e.g., SHAP).</p></li>
+<li><p>The explainer produces 3D plots, containing the model output when pairs of features vary simultaneously.</p></li>
+<li><p>If a single feature is provided, the explainer produces standard 2D ICE plots, where only one feature is perturbed at a time.</p></li>
+</ul>
+</section>
+<section id="instructions">
+<span id="ccs-references-instructions"></span><h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Create a new notebook <code class="docutils literal notranslate"><span class="pre">concrete_comprehensive_strength.ipynb</span></code> in Jupyter lab to run the demo on tabular regression and classification use cases. Refer to the instructions in <a class="reference internal" href="prerequisites.html#prereq-references-verify-installation"><span class="std std-ref">prerequisites</span></a>.</p></li>
+<li><p>Follow all the below sections and execute the code by pasting to the newly created notebook <code class="docutils literal notranslate"><span class="pre">concrete_comprehensive_strength.ipynb</span></code>.</p></li>
+</ul>
+<section id="imports">
+<h3>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h3>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">concrete_comprehensive_strength.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
+<span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
+<span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
+<span class="kn">from</span> <span class="nn">plotly</span> <span class="kn">import</span> <span class="n">express</span> <span class="k">as</span> <span class="n">px</span>
+<span class="kn">from</span> <span class="nn">plotly</span> <span class="kn">import</span> <span class="n">graph_objects</span> <span class="k">as</span> <span class="n">go</span>
+<span class="kn">from</span> <span class="nn">plotly.subplots</span> <span class="kn">import</span> <span class="n">make_subplots</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">aix360.algorithms.nncontrastive</span> <span class="kn">import</span> <span class="n">NearestNeighborContrastiveExplainer</span>
+<span class="kn">from</span> <span class="nn">aix360.algorithms.gce.gce</span> <span class="kn">import</span> <span class="n">GroupedCEExplainer</span>
+
+
+<span class="c1"># disable warnings </span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;TF_CPP_MIN_LOG_LEVEL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;3&#39;</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="load-dataset">
+<h3>Load Dataset<a class="headerlink" href="#load-dataset" title="Permalink to this heading">#</a></h3>
+<p>Download the dataset from <a class="reference external" href="https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength">UCI repository</a> using the below code snippet. For use-case and dataset description, refer to <a class="reference internal" href="#ccs-references-introduction"><span class="std std-ref">introduction</span></a>.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">concrete_comprehensive_strength.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Cement (kg in a m^3 mixture)&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Blast Furnace Slag (kg in a m^3 mixture)&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Fly Ash (kg in a m^3 mixture)&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Water (kg in a m^3 mixture)&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Superplasticizer (kg in a m^3 mixture)&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Coarse Aggregate (kg in a m^3 mixture)&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Fine Aggregate (kg in a m^3 mixture)&#39;</span><span class="p">,</span> <span class="s1">&#39;Age (day)&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Concrete compressive strength(MPa, megapascals) &#39;</span><span class="p">]</span>
+
+<span class="n">pd_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span>
+        <span class="s2">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/concrete/compressive/Concrete_Data.xls&quot;</span>
+    <span class="p">)</span>
+
+<span class="n">pd_data</span> <span class="o">=</span> <span class="n">pd_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">pd_data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">column_names</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">pd_data</span><span class="p">)</span>
+
+<span class="n">CCSThreshold</span> <span class="o">=</span> <span class="mi">28</span>
+
+<span class="n">pd_data_train</span><span class="p">,</span> <span class="n">pd_data_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">pd_data</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">pd_data_train</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">pd_data_train</span><span class="o">.</span><span class="n">values</span><span class="p">[:,:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">pd_data_train</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y_train_cls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_train</span><span class="o">&lt;=</span><span class="n">CCSThreshold</span><span class="p">)</span>
+
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">pd_data_test</span><span class="o">.</span><span class="n">values</span><span class="p">[:,:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">pd_data_test</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y_test_cls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_test</span><span class="o">&lt;=</span><span class="n">CCSThreshold</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="train-classification-model">
+<h3>Train Classification Model<a class="headerlink" href="#train-classification-model" title="Permalink to this heading">#</a></h3>
+<p>Train a GradientBoostingClassifier to predict if the concrete comprehensive strength is above the accepted quality threshold (28 MPa).</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">concrete_comprehensive_strength.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train_cls</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train Accuracy score : &#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train_cls</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test Accuracy score : &#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test_cls</span><span class="p">))</span>
+
+</pre></div>
+</div>
+</section>
+<section id="initialize-nearestneighborcontrastiveexplainer-with-black-box-model">
+<h3>Initialize NearestNeighborContrastiveExplainer With Black Box Model<a class="headerlink" href="#initialize-nearestneighborcontrastiveexplainer-with-black-box-model" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/nncontrastive/nncontrastive.py">NearestNeighborContrastiveExplainer</a> generates contrastive explanation close to the exemplar dataset for a given dataset. This exemplar dataset represents viable contrastive examples for the selected use case. The <code class="docutils literal notranslate"><span class="pre">NearestNeighborContrastiveExplainer</span></code> uses the input model to detect classes in the input data. And these classes are used to build the exemplar dataset for a given test instance.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">concrete_comprehensive_strength.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">neighbors</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">embedding_dim</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">layers_config</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">random_seed</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">explainer_with_model</span> <span class="o">=</span> <span class="n">NearestNeighborContrastiveExplainer</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">,</span>
+                                              <span class="n">embedding_dim</span><span class="o">=</span><span class="n">embedding_dim</span><span class="p">,</span>
+                                              <span class="n">layers_config</span><span class="o">=</span><span class="n">layers_config</span><span class="p">,</span>
+                                              <span class="n">neighbors</span><span class="o">=</span><span class="n">neighbors</span><span class="p">)</span>
+
+<span class="n">history</span> <span class="o">=</span> <span class="n">explainer_with_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">pd_data_train</span><span class="p">[</span><span class="n">feature_names</span><span class="p">],</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
+    <span class="n">numeric_scaling</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">random_seed</span><span class="o">=</span><span class="n">random_seed</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">p_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Epochs: </span><span class="si">{</span><span class="n">epochs</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">:</span>
+    <span class="n">p_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">p_str</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p_str</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="compute-nncontrastive-explanation">
+<h3>Compute NNContrastive Explanation<a class="headerlink" href="#compute-nncontrastive-explanation" title="Permalink to this heading">#</a></h3>
+<p>Find the nearest contrastive for a given instance. Consider a random instance from the set of non-acceptable instances (class 0) and compute the explanation.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">concrete_comprehensive_strength.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+<span class="n">nonacceptable_predictions_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_test_pred</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">rand_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">nonacceptable_predictions_indices</span><span class="p">)</span>
+<span class="n">instance_to_explain</span> <span class="o">=</span> <span class="n">pd_data_test</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">rand_index</span><span class="p">:</span><span class="n">rand_index</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">nearest_acceptable_contrastive</span> <span class="o">=</span> <span class="n">explainer_with_model</span><span class="o">.</span><span class="n">explain_instance</span><span class="p">(</span><span class="n">instance_to_explain</span><span class="p">)</span>
+<span class="n">nearest_acceptable_contrastive</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;neighbors&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="plot-nearestneighborcontrastive-explanation">
+<h3>Plot NearestNeighborContrastive Explanation<a class="headerlink" href="#plot-nearestneighborcontrastive-explanation" title="Permalink to this heading">#</a></h3>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">concrete_comprehensive_strength.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_matrix</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">matrix</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="k">if</span> <span class="n">vmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">vmax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="c1"># ax_mat = ax.matshow(matrix, vmin=vmin, vmax=vmax, aspect=&quot;auto&quot;, cmap=&quot;RdYlGn&quot;)</span>
+    <span class="n">ax_mat</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdYlGn&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+                <span class="n">j</span><span class="p">,</span>
+                <span class="n">i</span><span class="p">,</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">precision</span><span class="p">)),</span>
+                <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                <span class="n">rotation</span><span class="o">=</span><span class="n">rotation</span><span class="p">,</span>
+                <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+                <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span>
+                <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;x-large&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">ax_mat</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
+
+<span class="n">delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nearest_acceptable_contrastive</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;neighbors&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">instance_to_explain</span><span class="p">)</span>
+
+<span class="n">plot_matrix</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">delta</span><span class="p">)),</span> <span class="n">vmax</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">delta</span><span class="p">)),</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)),</span> <span class="n">feature_names</span><span class="p">,</span><span class="n">rotation</span> <span class="o">=</span> <span class="mi">90</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;large&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;delta between the selected instance and the nearest acceptable contrastive&#39;</span><span class="p">,</span>
+          <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;x-large&#39;</span><span class="p">,</span>
+          <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="train-regression-model">
+<h3>Train Regression Model<a class="headerlink" href="#train-regression-model" title="Permalink to this heading">#</a></h3>
+<p>Train a GradientBoostingRegressor to predict concrete comprehensive strength for a given mixture combination.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">concrete_comprehensive_strength.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">GradientBoostingRegressor</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train R2 score : &#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test R2 score : &#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="compute-individual-conditional-expectation-ice">
+<h3>Compute Individual Conditional Expectation (ICE)<a class="headerlink" href="#compute-individual-conditional-expectation-ice" title="Permalink to this heading">#</a></h3>
+<p>Initialize <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/gce/gce.py">GroupedCEExplainer</a> to compute ICE scores for each feature. The explanation is a local explanation computed for single instance.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">concrete_comprehensive_strength.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="n">n_test_samples</span> <span class="o">=</span> <span class="mi">25</span> <span class="c1"># number of instances to explain</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># number of samples to generate for selected feature</span>
+
+<span class="n">ice_explanations</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">feature_col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_names</span><span class="p">):</span>
+    <span class="n">ice_explainer</span> <span class="o">=</span> <span class="n">GroupedCEExplainer</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">,</span>
+                                       <span class="n">data</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> 
+                                       <span class="n">feature_names</span><span class="o">=</span><span class="n">feature_names</span><span class="p">,</span>
+                                         <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span>
+                                         <span class="n">features_selected</span><span class="o">=</span><span class="p">[</span><span class="n">feature_col</span><span class="p">],</span>
+                                        <span class="n">random_seed</span><span class="o">=</span><span class="mi">22</span>
+                                  <span class="p">)</span>
+    <span class="n">ice_explanations</span><span class="p">[</span><span class="n">feature_col</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_test_samples</span><span class="p">):</span>
+        <span class="n">ice_explanations</span><span class="p">[</span><span class="n">feature_col</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ice_explainer</span><span class="o">.</span><span class="n">explain_instance</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">X_test</span><span class="p">[[</span><span class="n">i</span><span class="p">],</span> <span class="p">:]))</span>
+</pre></div>
+</div>
+</section>
+<section id="plot-ice-explanation">
+<h3>Plot ICE Explanation<a class="headerlink" href="#plot-ice-explanation" title="Permalink to this heading">#</a></h3>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">concrete_comprehensive_strength.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_ice_explanation</span><span class="p">(</span><span class="n">explanation</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+    <span class="n">feature_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">explanation</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    <span class="n">gs0</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)],</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+    <span class="n">gs2</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpecFromSubplotSpec</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)),</span> <span class="mi">3</span><span class="p">,</span> <span class="n">subplot_spec</span><span class="o">=</span><span class="n">gs0</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">gs1</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpecFromSubplotSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">subplot_spec</span><span class="o">=</span><span class="n">gs0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">width_ratios</span><span class="o">=</span><span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">])</span>
+    <span class="c1"># print()</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">feature_col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_names</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">gs</span> <span class="o">=</span> <span class="n">gs2</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">gs</span> <span class="o">=</span> <span class="n">gs1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">)</span>
+        <span class="n">delta_avg</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">delta_ice_values</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">explanation</span><span class="p">[</span><span class="n">feature_col</span><span class="p">])):</span>
+            <span class="n">delta_ice</span> <span class="o">=</span> <span class="n">explanation</span><span class="p">[</span><span class="n">feature_col</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;ice_value&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">explanation</span><span class="p">[</span><span class="n">feature_col</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;ice_value&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">delta_ice_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">delta_ice</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">explanation</span><span class="p">[</span><span class="n">feature_col</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;feature_value&quot;</span><span class="p">],</span> <span class="n">delta_ice</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+
+        <span class="n">delta_ice_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">delta_ice_values</span><span class="p">)</span>
+        <span class="c1"># average ice value across test instances</span>
+        <span class="n">delta_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">delta_ice_values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">explanation</span><span class="p">[</span><span class="n">feature_col</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;feature_value&quot;</span><span class="p">],</span> <span class="n">delta_avg</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>  
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feature_col</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Model Prediction&#39;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Feature Value&#39;</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;x-large&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plot_ice_explanation</span><span class="p">(</span><span class="n">ice_explanations</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;GroupedCE (Individual Conditional Expectation) Explanation Plot for </span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2"> Test Instances.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_test_samples</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="compute-grouped-conditional-expectation-gce">
+<h3>Compute Grouped Conditional Expectation (GCE)<a class="headerlink" href="#compute-grouped-conditional-expectation-gce" title="Permalink to this heading">#</a></h3>
+<p>Initialize GroupedCEExplainer to compute GCE scores for each feature. The explanation is a local explanation computed for single instance. Each cell in the resulting grid explains how a combination of feature values (example BPM and BP) impact the model prediction.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">concrete_comprehensive_strength.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">top_k_features</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># initialization</span>
+<span class="n">groupedce_explainer</span> <span class="o">=</span> <span class="n">GroupedCEExplainer</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">,</span>
+                                         <span class="n">data</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> 
+                                         <span class="n">feature_names</span><span class="o">=</span><span class="n">feature_names</span><span class="p">,</span>
+                                         <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span>
+                                         <span class="n">top_k_features</span><span class="o">=</span><span class="n">top_k_features</span><span class="p">,</span>
+                                        <span class="n">random_seed</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+
+<span class="n">y_test_pred_regression</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">nonacceptable_predictions_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_test_pred_regression</span> <span class="o">&lt;=</span> <span class="n">CCSThreshold</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">rand_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">nonacceptable_predictions_indices</span><span class="p">)</span>
+<span class="n">groupedce_instance_to_explain</span> <span class="o">=</span> <span class="n">pd_data_test</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">rand_index</span><span class="p">:</span><span class="n">rand_index</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">groupedce_explanation</span> <span class="o">=</span> <span class="n">groupedce_explainer</span><span class="o">.</span><span class="n">explain_instance</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">groupedce_instance_to_explain</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="plot-gce-explanation">
+<h3>Plot GCE Explanation<a class="headerlink" href="#plot-gce-explanation" title="Permalink to this heading">#</a></h3>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">concrete_comprehensive_strength.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_gce_explanation</span><span class="p">(</span>
+    <span class="n">explanation</span><span class="p">,</span>
+    <span class="n">plot_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">250</span><span class="p">,</span>
+    <span class="n">plot_height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">250</span><span class="p">,</span>
+    <span class="n">plot_bgcolor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span>
+    <span class="n">plot_line_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">plot_instance_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+    <span class="n">plot_instance_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;firebrick&quot;</span><span class="p">,</span>
+    <span class="n">plot_instance_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">plot_contour_coloring</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;heatmap&quot;</span><span class="p">,</span>
+    <span class="n">plot_contour_color</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="s2">&quot;Portland&quot;</span><span class="p">,</span>
+    <span class="n">renderer</span><span class="o">=</span><span class="s2">&quot;notebook&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+
+    <span class="n">exp_data</span> <span class="o">=</span> <span class="n">explanation</span>
+    <span class="n">feat_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">exp_data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">exp_data</span><span class="p">[</span><span class="s1">&#39;selected_features&#39;</span><span class="p">]}</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">feat_dict</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">l</span><span class="p">:</span> <span class="n">feat_dict</span><span class="p">[</span><span class="n">l</span><span class="p">])</span>
+    <span class="n">n_feat</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+    <span class="n">specs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[{}</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">j</span> <span class="k">else</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_feat</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_feat</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span>
+        <span class="n">rows</span><span class="o">=</span><span class="n">n_feat</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">cols</span><span class="o">=</span><span class="n">n_feat</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">specs</span><span class="o">=</span><span class="n">specs</span><span class="p">,</span>
+        <span class="n">shared_xaxes</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">,</span>
+        <span class="n">shared_yaxes</span><span class="o">=</span><span class="s2">&quot;rows&quot;</span><span class="p">,</span>
+        <span class="n">column_titles</span><span class="o">=</span><span class="n">features</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+        <span class="n">row_titles</span><span class="o">=</span><span class="n">features</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">x_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_feat</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_feat</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">y_i</span> <span class="o">&lt;</span> <span class="n">x_i</span><span class="p">:</span>
+                <span class="n">x_feat</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="n">x_i</span><span class="p">]</span>
+                <span class="n">y_feat</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="n">y_i</span><span class="p">]</span>
+                <span class="n">z</span> <span class="o">=</span> <span class="n">exp_data</span><span class="p">[</span><span class="n">x_feat</span><span class="p">][</span><span class="n">y_feat</span><span class="p">][</span><span class="s2">&quot;gce_values&quot;</span><span class="p">]</span>
+                <span class="n">x_g</span> <span class="o">=</span> <span class="n">exp_data</span><span class="p">[</span><span class="n">x_feat</span><span class="p">][</span><span class="n">y_feat</span><span class="p">][</span><span class="s2">&quot;x_grid&quot;</span><span class="p">]</span>
+                <span class="n">y_g</span> <span class="o">=</span> <span class="n">exp_data</span><span class="p">[</span><span class="n">x_feat</span><span class="p">][</span><span class="n">y_feat</span><span class="p">][</span><span class="s2">&quot;y_grid&quot;</span><span class="p">]</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+                    <span class="n">go</span><span class="o">.</span><span class="n">Contour</span><span class="p">(</span>
+                        <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span>
+                        <span class="n">x</span><span class="o">=</span><span class="n">x_g</span><span class="p">,</span>
+                        <span class="n">y</span><span class="o">=</span><span class="n">y_g</span><span class="p">,</span>
+                        <span class="n">connectgaps</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">line_smoothing</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                        <span class="n">contours_coloring</span><span class="o">=</span><span class="n">plot_contour_coloring</span><span class="p">,</span>
+                        <span class="n">contours_showlabels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">line_width</span><span class="o">=</span><span class="n">plot_line_width</span><span class="p">,</span>
+                        <span class="n">coloraxis</span><span class="o">=</span><span class="s2">&quot;coloraxis1&quot;</span><span class="p">,</span>
+                        <span class="n">hovertemplate</span><span class="o">=</span><span class="s2">&quot;&lt;b&gt;&quot;</span>
+                        <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x_feat</span><span class="p">)</span>
+                        <span class="o">+</span> <span class="s2">&quot;&lt;/b&gt;: %</span><span class="si">{x:.2f}</span><span class="s2">&lt;br&gt;&quot;</span>
+                        <span class="o">+</span> <span class="s2">&quot;&lt;b&gt;&quot;</span>
+                        <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y_feat</span><span class="p">)</span>
+                        <span class="o">+</span> <span class="s2">&quot;&lt;/b&gt;: %</span><span class="si">{y:.2f}</span><span class="s2">&lt;br&gt;&quot;</span>
+                        <span class="o">+</span> <span class="s2">&quot;&lt;b&gt;prediction&lt;/b&gt;: %</span><span class="si">{z:.2f}</span><span class="s2">&lt;br&gt;&lt;extra&gt;&lt;/extra&gt;&quot;</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="n">row</span><span class="o">=</span><span class="n">y_i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="n">col</span><span class="o">=</span><span class="n">x_i</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="s2">&quot;current_values&quot;</span> <span class="ow">in</span> <span class="n">exp_data</span><span class="p">[</span><span class="n">x_feat</span><span class="p">][</span><span class="n">y_feat</span><span class="p">]:</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="n">exp_data</span><span class="p">[</span><span class="n">x_feat</span><span class="p">][</span><span class="n">y_feat</span><span class="p">][</span><span class="s2">&quot;current_values&quot;</span><span class="p">][</span><span class="n">x_feat</span><span class="p">]</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="n">exp_data</span><span class="p">[</span><span class="n">x_feat</span><span class="p">][</span><span class="n">y_feat</span><span class="p">][</span><span class="s2">&quot;current_values&quot;</span><span class="p">][</span><span class="n">y_feat</span><span class="p">]</span>
+                    <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+                        <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+                            <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;markers&quot;</span><span class="p">,</span>
+                            <span class="n">marker_symbol</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+                            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
+                            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">y</span><span class="p">],</span>
+                            <span class="n">marker_color</span><span class="o">=</span><span class="n">plot_instance_color</span><span class="p">,</span>
+                            <span class="n">marker_line_color</span><span class="o">=</span><span class="n">plot_instance_color</span><span class="p">,</span>
+                            <span class="n">marker_size</span><span class="o">=</span><span class="n">plot_instance_size</span><span class="p">,</span>
+                            <span class="n">marker_line_width</span><span class="o">=</span><span class="n">plot_instance_width</span><span class="p">,</span>
+                            <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="n">hovertemplate</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{:.2f}</span><span class="s2">&lt;br&gt; </span><span class="si">{}</span><span class="s2">: </span><span class="si">{:.2f}</span><span class="s2">&lt;extra&gt;&lt;/extra&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                <span class="n">x_feat</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y_feat</span><span class="p">,</span> <span class="n">y</span>
+                            <span class="p">),</span>
+                        <span class="p">),</span>
+                        <span class="n">row</span><span class="o">=</span><span class="n">y_i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                        <span class="n">col</span><span class="o">=</span><span class="n">x_i</span><span class="p">,</span>
+                    <span class="p">)</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">height</span><span class="o">=</span><span class="p">(</span><span class="n">n_feat</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">plot_height</span><span class="p">,</span>
+        <span class="n">width</span><span class="o">=</span><span class="p">(</span><span class="n">n_feat</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">plot_width</span><span class="p">,</span>
+        <span class="n">plot_bgcolor</span><span class="o">=</span><span class="n">plot_bgcolor</span><span class="p">,</span>
+        <span class="n">coloraxis_autocolorscale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">coloraxis_colorscale</span><span class="o">=</span><span class="n">plot_contour_color</span><span class="p">,</span>
+        <span class="n">title_text</span><span class="o">=</span><span class="n">title</span>
+        
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span>
+
+<span class="n">title</span><span class="o">=</span><span class="s2">&quot;Grouped Conditional Expectation (GCE) Plots for Test Instance </span><span class="si">{}</span><span class="s2"> and Selected Features </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">groupedce_explanation</span><span class="p">[</span><span class="s1">&#39;selected_features&#39;</span><span class="p">])</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_gce_explanation</span><span class="p">(</span><span class="n">groupedce_explanation</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
+<span class="n">dataset_plot_bytes</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">to_image</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">1400</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">dataset_plot_bytes</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Congratulations!! and Thank You for attending the tutorial!!</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./books"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="energy_load_forecasting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Energy Load Forecasting</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-contrastive-explanation">Nearest Neighbor Contrastive explanation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grouped-conditional-expectation-explainer">Grouped Conditional Expectation Explainer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-classification-model">Train Classification Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-nearestneighborcontrastiveexplainer-with-black-box-model">Initialize NearestNeighborContrastiveExplainer With Black Box Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-nncontrastive-explanation">Compute NNContrastive Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-nearestneighborcontrastive-explanation">Plot NearestNeighborContrastive Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-regression-model">Train Regression Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-individual-conditional-expectation-ice">Compute Individual Conditional Expectation (ICE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-ice-explanation">Plot ICE Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-grouped-conditional-expectation-gce">Compute Grouped Conditional Expectation (GCE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-gce-explanation">Plot GCE Explanation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By IBM Research
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,633 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Setup Instructions &#8212; KDD Demo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'books/prerequisites';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Engine Fault Detection" href="engine_fault_detection.html" />
+    <link rel="prev" title="AI Explainability 360 Toolkit for Time-Series and Industrial Use Cases" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    AI Explainability 360 Toolkit for Time-Series and Industrial Use Cases
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setup Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="engine_fault_detection.html">Engine Fault Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy_load_forecasting.html">Energy Load Forecasting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concrete_comprehensive_strength.html">Concrete Compressive Strength</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Trusted-AI/AIX360/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Trusted-AI/AIX360/tree/master/issues/new?title=Issue%20on%20page%20%2Fbooks/prerequisites.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/books/prerequisites.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Setup Instructions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-requirements">System Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-folder">Demo Folder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python">Install Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-conda">Install Conda</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-aix360">Install AIX360</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pip">PIP</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conda">Conda</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-installation">Verify Installation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="setup-instructions">
+<h1>Setup Instructions<a class="headerlink" href="#setup-instructions" title="Permalink to this heading">#</a></h1>
+<p>We encourage and recommend the audience to follow the below instructions and prepare their environment prior to the tutorial.</p>
+<section id="system-requirements">
+<h2>System Requirements<a class="headerlink" href="#system-requirements" title="Permalink to this heading">#</a></h2>
+<p>Please prepare your system to ensure that the following software requirements are met, in order to run the demo notebooks in this tutorial.</p>
+<ul class="simple">
+<li><p>Python 3.10</p></li>
+<li><p>Terminal (or relevant environment such as git bash shell, Windows Terminal etc. to execute commands throughout the tutorial).</p></li>
+<li><p>Internet connection (must be able to download from the internet.)</p></li>
+</ul>
+<p>Once the requirements above are met, follow instructions in <a class="reference internal" href="#prereq-references-installation"><span class="std std-ref">Installation</span></a> to prepare your python environment for this demo.</p>
+</section>
+<section id="installation">
+<span id="prereq-references-installation"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
+<p>Python packages often pose difficulties in resolving dependency conflicts or get corrupted with conflicting dependency versions. So, we strongly encourage the audience to use virtual environments for this tutorial either using Conda or Python.</p>
+<section id="demo-folder">
+<span id="prereq-references-demo-folder"></span><h3>Demo Folder<a class="headerlink" href="#demo-folder" title="Permalink to this heading">#</a></h3>
+<p>Create a folder to keep all demo content in an isolated place in your file system.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>aix360_demo
+<span class="nb">cd</span><span class="w"> </span>aix360_demo
+</pre></div>
+</div>
+<p>Python 3.10 is a must for this tutorial. Installing python 3.10 is beyond the scope of this tutorial. We have provided python/conda installation steps for reference. If you are interested in using Conda, you can refer to <a class="reference internal" href="#prereq-references-install-conda"><span class="std std-ref">Install Conda</span></a>. Otherwise, please refer to <a class="reference internal" href="#prereq-references-install-python"><span class="std std-ref">Install Python</span></a>.</p>
+</section>
+<section id="install-python">
+<span id="prereq-references-install-python"></span><h3>Install Python<a class="headerlink" href="#install-python" title="Permalink to this heading">#</a></h3>
+<p>Following are few popular approaches to install python. You can use one of these approaches to install Python.</p>
+<ul class="simple">
+<li><p>Download and install the python binaries from <a class="reference external" href="https://www.python.org/downloads/release/python-31011/">this link</a>.</p></li>
+<li><p>If you need to maintain multiple python versions, use <a class="reference external" href="https://github.com/pyenv/pyenv#install-additional-python-versions">pyenv</a>.</p></li>
+<li><p>Use <a class="reference internal" href="#prereq-references-install-conda"><span class="std std-ref">Conda</span></a>.</p></li>
+</ul>
+<p>Type the below command in Terminal to verify Python installation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-V
+</pre></div>
+</div>
+<p>It must show python version as 3.10 without errors.</p>
+<p>Now, install aix360 library using <a class="reference internal" href="#prereq-references-install-aix360"><span class="std std-ref">these instructions</span></a>.</p>
+</section>
+<section id="install-conda">
+<span id="prereq-references-install-conda"></span><h3>Install Conda<a class="headerlink" href="#install-conda" title="Permalink to this heading">#</a></h3>
+<p>Refer to <a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/install/index.html#regular-installation">this link</a> to install Conda.</p>
+<p>Now, install aix360 library using <a class="reference internal" href="#prereq-references-install-aix360"><span class="std std-ref">these instructions</span></a>.</p>
+</section>
+<section id="install-aix360">
+<span id="prereq-references-install-aix360"></span><h3>Install AIX360<a class="headerlink" href="#install-aix360" title="Permalink to this heading">#</a></h3>
+<p>This section installs all the required python dependencies for this tutorial. If you are using vanilla Python (not Conda), follow the <a class="reference internal" href="#prereq-references-pip"><span class="std std-ref">below instructions</span></a>. If you are using conda based environments, follow <a class="reference internal" href="#prereq-references-conda"><span class="std std-ref">Conda</span></a> instructions.</p>
+<p>Note: Tensorflow 2.9.3 is not available for M1 chip users.</p>
+<section id="pip">
+<span id="prereq-references-pip"></span><h4>PIP<a class="headerlink" href="#pip" title="Permalink to this heading">#</a></h4>
+<p>Follow the instructions <a class="reference external" href="https://github.com/Trusted-AI/AIX360#pip-installation-of-ai-explainability-360">here</a> to install AIX360 library using pip.</p>
+<p>Paste the below commands in Terminal and execute them sequentially.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>aix360_kdd
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>aix360_kdd/bin/activate
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>xlrd<span class="w"> </span>huggingface-hub<span class="w"> </span>jupyterlab<span class="w"> </span>aix360<span class="o">[</span>tssaliency,tsice,tslime,nncontrastive,gce<span class="o">]==</span><span class="m">0</span>.3.0
+</pre></div>
+</div>
+<p>Now, your environment is ready use aix360’s time-series explainers. This tutorial uses <a class="reference external" href="https://jupyter.org/">Jupyter Lab</a> to run and visualize the explanations. Follow <a class="reference internal" href="#prereq-references-jupyterlab"><span class="std std-ref">Jupyterlab</span></a> section to start Jupyter lab.</p>
+</section>
+<section id="conda">
+<span id="prereq-references-conda"></span><h4>Conda<a class="headerlink" href="#conda" title="Permalink to this heading">#</a></h4>
+<p>Please follow the instructions <a class="reference external" href="https://github.com/Trusted-AI/AIX360#conda">here</a> to install AIX360 library using Conda.</p>
+<p>Paste the below commands in Terminal and execute them sequentially.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;aix360_kdd&quot;</span><span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10<span class="w"> </span>-y
+conda<span class="w"> </span>activate<span class="w"> </span>aix360_kdd
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>xlrd<span class="w"> </span>huggingface-hub<span class="w"> </span>jupyterlab<span class="w"> </span>aix360<span class="o">[</span>tssaliency,tsice,tslime,nncontrastive,gce<span class="o">]==</span><span class="m">0</span>.3.0
+</pre></div>
+</div>
+<p>Now, your environment is ready use aix360’s time-series explainers. This tutorial uses <a class="reference external" href="https://jupyter.org/">Jupyter Lab</a> to run and visualize the explanations. Follow <a class="reference internal" href="#prereq-references-jupyterlab"><span class="std std-ref">Jupyterlab</span></a> section to start Jupyter lab.</p>
+</section>
+</section>
+<section id="jupyterlab">
+<span id="prereq-references-jupyterlab"></span><h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this heading">#</a></h3>
+<p>Start jupyter lab using the below command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>lab
+</pre></div>
+</div>
+<p>The Jupyter lab server starts at <code class="docutils literal notranslate"><span class="pre">http://localhost:8888/lab</span></code> and launches the page in a browser. If it is not launched the browser, paste and run the url in browser to start Jupyter lab server.</p>
+<section id="verify-installation">
+<span id="prereq-references-verify-installation"></span><h4>Verify Installation<a class="headerlink" href="#verify-installation" title="Permalink to this heading">#</a></h4>
+<p>To verify the installation, open a new notebook from launcher.
+<img alt="Alt text" src="../_images/new_notebook.png" /></p>
+<p>Right click on the new file <code class="docutils literal notranslate"><span class="pre">Untitled</span></code> from the sidebar and rename to :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test_installation</span>
+</pre></div>
+</div>
+<p><img alt="Alt text" src="../_images/rename_notebook.png" /></p>
+<p>Paste the below content into a cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">aix360.algorithms.tssaliency</span> <span class="kn">import</span> <span class="n">TSSaliencyExplainer</span>
+<span class="kn">from</span> <span class="nn">aix360.algorithms.tslime</span> <span class="kn">import</span> <span class="n">TSLimeExplainer</span>
+<span class="kn">from</span> <span class="nn">aix360.algorithms.tsice</span> <span class="kn">import</span> <span class="n">TSICEExplainer</span>
+<span class="kn">from</span> <span class="nn">aix360.algorithms.nncontrastive</span> <span class="kn">import</span> <span class="n">NearestNeighborContrastiveExplainer</span>
+<span class="kn">from</span> <span class="nn">aix360.algorithms.gce</span> <span class="kn">import</span> <span class="n">GroupedCEExplainer</span>
+</pre></div>
+</div>
+<p>Execute the cell.
+<img alt="Alt text" src="../_images/run_cell.png" /></p>
+<p>Now, go to first demo use-case on <a class="reference internal" href="engine_fault_detection.html"><span class="doc std std-doc">Engine Fault Detection</span></a>.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./books"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">AI Explainability 360 Toolkit for Time-Series and Industrial Use Cases</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="engine_fault_detection.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Engine Fault Detection</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-requirements">System Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-folder">Demo Folder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python">Install Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-conda">Install Conda</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-aix360">Install AIX360</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pip">PIP</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conda">Conda</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-installation">Verify Installation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By IBM Research
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

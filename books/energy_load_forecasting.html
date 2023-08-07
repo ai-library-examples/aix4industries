@@ -1,0 +1,960 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Energy Load Forecasting &#8212; KDD Demo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'books/energy_load_forecasting';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Concrete Compressive Strength" href="concrete_comprehensive_strength.html" />
+    <link rel="prev" title="Engine Fault Detection" href="engine_fault_detection.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    AI Explainability 360 Toolkit for Time-Series and Industrial Use Cases
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Setup Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="engine_fault_detection.html">Engine Fault Detection</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Energy Load Forecasting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concrete_comprehensive_strength.html">Concrete Compressive Strength</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Trusted-AI/AIX360/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Trusted-AI/AIX360/tree/master/issues/new?title=Issue%20on%20page%20%2Fbooks/energy_load_forecasting.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/books/energy_load_forecasting.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Energy Load Forecasting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-individual-conditional-expectation">Time Series Individual Conditional Expectation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-dataset">Plot the dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">Data Preprocessing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">Train Test Split</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robust-scaling-of-the-data">Robust Scaling of the data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-pre-trained-model">Load Pre-Trained Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-tsice-explainer">Initializing TSICE Explainer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-tsice-explanation">Compute TSICE Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-tsice-explanation">Plot TSICE Explanation</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="energy-load-forecasting">
+<span id="elf-references-introduction"></span><h1>Energy Load Forecasting<a class="headerlink" href="#energy-load-forecasting" title="Permalink to this heading">#</a></h1>
+<p>Accurate forecasting of expected energy load is identified as one of the highest leverage contribution areas of Machine/Deep Learning toward transitioning to a renewable-based electrical infrastructure. In this demo, we cover a use case on forecasting energy load using <a class="reference external" href="https://www.kaggle.com/datasets/nicholasjhana/energy-consumption-generation-prices-and-weather?resource=download">hourly energy demand generation data</a>.</p>
+<p>This dataset is originally from <a class="reference external" href="https://transparency.entsoe.eu/dashboard/show">ENTSOE transparency platform</a>, and contains 4 years of hourly electrical consumption, coal consumption, effluent gas generation, hourly forecasted and actual energy demand, and energy pricing generation. For this demo, we only use the actual energy demand column (<strong>total actual load</strong>). Though energy load forecast is affected by external factors like weather, and unit pricing, the load data exhibits a strong diurnal pattern and autoregressive structure. So, we treat the forecasting problem as univariate forecasting. The model predicts the next 12-hour energy load from the last three days’ data.</p>
+<p>For this demo, we use a <a class="reference download internal" download="" href="../_downloads/2ded3a300238230b676816e31b654912/energy_load_forecast.h5"><span class="xref download myst">pre-trained Keras model weights</span></a> which can be downloaded into your file system. We use aix360’s <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tslime/tslime.py">Time Series Individual Conditional Expectation (TSLimeExplainer)</a> to explain the energy load forecaster’s sensitivity, i.e., how the model forecast is impacted by the input. Further, we analyze the impact of the input time series in terms of time series data statistics.</p>
+<p>For more algorithmic details on TSICE, you can refer to <a class="reference internal" href="#elf-references-tsice"><span class="std std-ref">Time Series Individual Conditional Expectation</span></a>.</p>
+<p>To start this hands on demo, skip to <a class="reference internal" href="#elf-references-instructions"><span class="std std-ref">Instructions</span></a>.</p>
+<section id="time-series-individual-conditional-expectation">
+<span id="elf-references-tsice"></span><h2>Time Series Individual Conditional Expectation<a class="headerlink" href="#time-series-individual-conditional-expectation" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">TSICEExplainer</span></code> is a model agnostic, black box forecaster explainer and provides local explanations for time series data. This algorithm adapts traditional Individual Conditional Expectation plot to time series modality. Timeseries data is highly correlated. Many algorithms often use features derived from the timeseries for forecasting. But these features cannot be changed independently. The TSICE relies on temporally focused sampling method (via timeseries perturbation) to explore this feature space and establishes the connection from this feature space to the model output.</p>
+</section>
+<section id="instructions">
+<span id="elf-references-instructions"></span><h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Create a new notebook <code class="docutils literal notranslate"><span class="pre">energy_load_forecasting.ipynb</span></code> in Jupyter lab to run the demo on energy load forecasting use case. Refer to the instructions in <a class="reference internal" href="prerequisites.html#prereq-references-verify-installation"><span class="std std-ref">prerequisites</span></a>.</p></li>
+<li><p>Follow all the below sections and execute the code by pasting into the newly created notebook <code class="docutils literal notranslate"><span class="pre">energy_load_forecasting.ipynb</span></code>.</p></li>
+</ul>
+<section id="imports">
+<h3>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h3>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">energy_load_forecasting.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="c1"># to suppress unrelated tensorflow warnings while importing aix360.datasets</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TF_CPP_MIN_LOG_LEVEL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;3&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">plotly.subplots</span> <span class="kn">import</span> <span class="n">make_subplots</span>
+<span class="kn">from</span> <span class="nn">plotly</span> <span class="kn">import</span> <span class="n">graph_objects</span> <span class="k">as</span> <span class="n">go</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">aix360.algorithms.tsice</span> <span class="kn">import</span> <span class="n">TSICEExplainer</span>
+
+</pre></div>
+</div>
+</section>
+<section id="load-dataset">
+<h3>Load Dataset<a class="headerlink" href="#load-dataset" title="Permalink to this heading">#</a></h3>
+<p>Download the dataset from <a class="reference external" href="https://www.kaggle.com/datasets/nicholasjhana/energy-consumption-generation-prices-and-weather">Kaggle</a> manually. Unzip the file and move <code class="docutils literal notranslate"><span class="pre">energy_dataset.csv</span></code> to the tutorial folder <code class="docutils literal notranslate"><span class="pre">aix360_demo</span></code>. For use-case and dataset description, refer to <a class="reference internal" href="#elf-references-introduction"><span class="std std-ref">introduction</span></a>.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">energy_load_forecasting.ipynb</span></code> in Jupyter lab and run the cell. The data has NaN values and so, imputing using <code class="docutils literal notranslate"><span class="pre">interpolate</span></code> to have uniform frequency.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">energy_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;energy_dataset.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">energy_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">energy_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">energy_df</span> <span class="o">=</span> <span class="n">energy_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="n">energy_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">infer_freq</span><span class="p">(</span><span class="n">energy_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">total_energy_col</span> <span class="o">=</span> <span class="s1">&#39;total load actual&#39;</span>
+<span class="n">energy_df</span><span class="p">[</span><span class="n">total_energy_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">energy_df</span><span class="p">[</span><span class="n">total_energy_col</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">energy_df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="plot-the-dataset">
+<h2>Plot the dataset<a class="headerlink" href="#plot-the-dataset" title="Permalink to this heading">#</a></h2>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">energy_load_forecasting.ipynb</span></code> in Jupyter lab and run the cell to plot energy load from Feb 2015.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">energy_df</span><span class="p">[</span><span class="n">total_energy_col</span><span class="p">][</span><span class="s1">&#39;2015-02-01&#39;</span><span class="p">:</span><span class="s1">&#39;2015-02-28&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">total_energy_col</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="data-preprocessing">
+<h3>Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this heading">#</a></h3>
+<p>Prepare the data for the model by running a 72-hour sliding window on each partition. And extract the history input (72-hour) and forecast (12-hour) pair at the same time.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">energy_load_forecasting.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">history_length</span><span class="p">,</span> <span class="n">lookahead</span> <span class="o">=</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">12</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">energy_df</span><span class="p">[</span><span class="n">total_energy_col</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">t_x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">energy_df</span><span class="p">[</span><span class="n">total_energy_col</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">data_len</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">X_all</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="n">t_all</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data_len</span> <span class="o">-</span> <span class="n">history_length</span> <span class="o">-</span> <span class="n">lookahead</span><span class="p">):</span>
+    <span class="n">x_seg</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">history_length</span> <span class="o">+</span> <span class="n">lookahead</span><span class="p">]</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x_seg</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x_seg</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">2000</span><span class="p">:</span>
+        <span class="n">X_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_seg</span><span class="p">)</span>
+        <span class="n">t_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t_x</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="n">history_length</span><span class="p">):(</span><span class="n">i</span><span class="o">+</span><span class="n">history_length</span> <span class="o">+</span> <span class="n">lookahead</span><span class="p">)])</span>
+<span class="n">X_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_all</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">X_all</span><span class="p">[:,</span> <span class="p">:</span><span class="n">history_length</span><span class="p">],</span> <span class="n">X_all</span><span class="p">[:,</span> <span class="n">history_length</span><span class="p">:]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="train-test-split">
+<h2>Train Test Split<a class="headerlink" href="#train-test-split" title="Permalink to this heading">#</a></h2>
+<p>Train a Convolution Network based (Dilated Convolution Network) deep learning model, that forecast the next 12 hours’ energy demand by looking at the last 3 days (72 hours) energy consumption. For the model training purposes, we split the data into three parts, (1) training (80%), (2) validation (10%), and (3) test (10%).</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">energy_load_forecasting.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_data</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">train_len</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">n_data</span><span class="p">)</span>
+<span class="n">validation_len</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.9</span> <span class="o">*</span> <span class="n">n_data</span><span class="p">)</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">train_len</span><span class="p">],</span> <span class="n">y</span><span class="p">[:</span><span class="n">train_len</span><span class="p">]</span> 
+<span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_len</span><span class="p">:</span><span class="n">validation_len</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">train_len</span><span class="p">:</span><span class="n">validation_len</span><span class="p">]</span>
+<span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">validation_len</span><span class="p">:],</span> <span class="n">y</span><span class="p">[</span><span class="n">validation_len</span><span class="p">:]</span>
+<span class="n">t_val</span> <span class="o">=</span> <span class="n">t_all</span><span class="p">[</span><span class="n">validation_len</span><span class="p">:]</span>
+</pre></div>
+</div>
+</section>
+<section id="robust-scaling-of-the-data">
+<h2>Robust Scaling of the data<a class="headerlink" href="#robust-scaling-of-the-data" title="Permalink to this heading">#</a></h2>
+<p>Apply robust quantile scaling i.e., scale the data using lower(1%) and upper(99%) quantile values. As a result, forecasted values are scaled as well.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">RobustQuantileScaler</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_lo</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_hi</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_lo</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_hi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">data_X</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_lo</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">data_hi</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_lo</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">data_y</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_lo</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">data_hi</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_lo</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data_X</span><span class="p">,</span> <span class="n">data_y</span>
+    
+    <span class="k">def</span> <span class="nf">inverse_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">data</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_hi</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_lo</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_lo</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">RobustQuantileScaler</span><span class="p">()</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">RobustQuantileScaler</span><span class="p">()</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
+
+<span class="n">X_input_scaler</span> <span class="o">=</span> <span class="n">RobustQuantileScaler</span><span class="p">()</span>
+<span class="n">X_in</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">X_input_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:</span><span class="mi">3000</span><span class="p">])</span>
+
+</pre></div>
+</div>
+<section id="load-pre-trained-model">
+<h3>Load Pre-Trained Model<a class="headerlink" href="#load-pre-trained-model" title="Permalink to this heading">#</a></h3>
+<p>Build a deep neural network model composed of dilated causal convolution layers followed by dense layers. And it uses residual connection between the convolution layers. Outputs from the convolution layers are concatenated, and then further passed to the dense FC (fully connected) layer to produce the forecast. The model is configured for a fixed length input of <code class="docutils literal notranslate"><span class="pre">history_length</span></code> (=72) size and produce a fixed length forecast of length <code class="docutils literal notranslate"><span class="pre">lookahead</span></code> (=12).</p>
+<p>Download model weights from <a class="reference download internal" download="" href="../_downloads/2ded3a300238230b676816e31b654912/energy_load_forecast.h5"><span class="xref download myst">here</span></a> to the demo folder <code class="docutils literal notranslate"><span class="pre">aix360_demo</span></code> created in <a class="reference internal" href="prerequisites.html#prereq-references-demo-folder"><span class="std std-ref">prerequisites</span></a>. If the weights cannot be downloaded, model can be trained using the training data.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">energy_load_forecasting.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">d_input</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">((</span><span class="n">history_length</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">d_input</span>
+
+<span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv1D</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;causal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv1D</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dilation_rate</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;causal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">x3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv1D</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dilation_rate</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;causal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x2</span> <span class="o">+</span> <span class="n">x1</span><span class="p">)</span>
+<span class="n">x4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv1D</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dilation_rate</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;causal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x3</span> <span class="o">+</span> <span class="n">x2</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">TimeDistributed</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;gelu&#39;</span><span class="p">))(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;elu&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">lookahead</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x_out</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Reshape</span><span class="p">((</span><span class="n">lookahead</span><span class="p">,</span> <span class="mi">1</span><span class="p">))(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">d_input</span><span class="p">,</span> <span class="n">x_out</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s2">&quot;mse&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;energy_load_forecast.h5&#39;</span><span class="p">):</span>
+    <span class="n">callback</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> <span class="n">min_delta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> 
+                        <span class="n">validation_data</span><span class="o">=</span><span class="p">[</span><span class="n">X_val</span><span class="p">[:</span><span class="mi">100</span><span class="p">],</span> <span class="n">y_val</span><span class="p">[:</span><span class="mi">100</span><span class="p">]],</span> 
+                        <span class="n">batch_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> 
+                        <span class="n">epochs</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> 
+                        <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                        <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">callback</span><span class="p">])</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">save_weights</span><span class="p">(</span><span class="s1">&#39;energy_load_forecast.h5&#39;</span><span class="p">,</span> <span class="n">save_format</span><span class="o">=</span><span class="s2">&quot;h5&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s1">&#39;energy_load_forecast.h5&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">ForecastingPipeline</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+    
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">T</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+
+        <span class="n">x_in_scaler</span> <span class="o">=</span> <span class="n">RobustQuantileScaler</span><span class="p">()</span>
+        <span class="n">x_in</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">x_in_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_in</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">x_in_scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">y</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">forecast</span> <span class="o">=</span> <span class="n">ForecastingPipeline</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="n">y_out</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:</span><span class="mi">3000</span><span class="p">])</span>
+<span class="n">i_start</span><span class="p">,</span> <span class="n">i_end</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1500</span>
+
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y_test</span><span class="p">[</span><span class="n">_</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i_start</span><span class="p">,</span> <span class="n">i_end</span><span class="p">,</span> <span class="n">lookahead</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y_out</span><span class="p">[</span><span class="n">_</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i_start</span><span class="p">,</span> <span class="n">i_end</span><span class="p">,</span> <span class="n">lookahead</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">t_test</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">t_all</span><span class="p">[</span><span class="n">_</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i_start</span><span class="p">,</span> <span class="n">i_end</span><span class="p">,</span> <span class="n">lookahead</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;predicted&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_test</span><span class="p">,</span> <span class="n">y_true</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;actual&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Model forecasts&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="initializing-tsice-explainer">
+<h3>Initializing TSICE Explainer<a class="headerlink" href="#initializing-tsice-explainer" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tsice/tsice.py">TSICEExplainer</a> uses <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/ef086583a1722b9a8714abc1ac6e8eeb9e3e3a2e/aix360/algorithms/tsutils/tsperturbers/tsperturber.py#L52">TSPerturber</a> for generating perturbed/simulated data and <a class="reference external" href="https://github.ibm.com/srom/aix360-internal/blob/master/aix360/algorithms/tsutils/tsfeatures/tsfeatures.py">TSFeatures</a> (<a class="reference external" href="https://github.ibm.com/srom/aix360-internal/blob/master/aix360/algorithms/tsutils/tsfeatures/latest_features.py">Latest</a>/<a class="reference external" href="https://github.ibm.com/srom/aix360-internal/blob/master/aix360/algorithms/tsutils/tsfeatures/range_features.py">Range</a> Feature) to derive time series structural features for further analysis. The <code class="docutils literal notranslate"><span class="pre">TSICEExplainer</span></code> explains the trend in the model forecast change by varying the selected part of the time series.</p>
+<p>Available perturbers are <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tsutils/tsperturbers/block_bootstrap_perturber.py">“block-bootstrap”</a>(default), <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tsutils/tsperturbers/frequency_perturber.py">“frequency”</a>, <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tsutils/tsperturbers/moving_average_perturber.py">“moving_average”</a>, and <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tsutils/tsperturbers/ts_shift_perturber.py">“shift”</a>. Available aggregation metrics (stats) are “median”, “mean”, “min”, “max”, “std”, “range”, “intercept”, “trend”, “rsquared”, “max_variation”. <code class="docutils literal notranslate"><span class="pre">explanation_window_start</span></code> and <code class="docutils literal notranslate"><span class="pre">explanation_window_length</span></code> are used to select observation window to be explained.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">energy_load_forecasting.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsice_explainer</span> <span class="o">=</span> <span class="n">TSICEExplainer</span><span class="p">(</span><span class="n">forecast</span><span class="p">,</span> 
+                             <span class="n">input_length</span><span class="o">=</span><span class="n">history_length</span><span class="p">,</span> 
+                             <span class="n">forecast_lookahead</span><span class="o">=</span><span class="n">lookahead</span><span class="p">,</span>
+                             <span class="n">n_variables</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                             <span class="n">perturbers</span><span class="o">=</span><span class="p">[</span>
+                                  <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;block-bootstrap&quot;</span><span class="p">,</span> 
+                                       <span class="n">window_length</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+                                       <span class="n">block_length</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+                                       <span class="n">block_swap</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                              <span class="p">],</span>
+                             <span class="n">features_to_analyze</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;max_variation&#39;</span><span class="p">,</span> <span class="s1">&#39;trend&#39;</span><span class="p">],</span>
+                             <span class="n">explanation_window_length</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+<section id="compute-tsice-explanation">
+<h3>Compute TSICE Explanation<a class="headerlink" href="#compute-tsice-explanation" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">TSICEExplainer</span></code> produces a local explanation, for the current instance. The local explanation can be produced via the <code class="docutils literal notranslate"><span class="pre">explain_instance</span></code> API call. For the explanation generation <code class="docutils literal notranslate"><span class="pre">TSICEExplainer</span></code> carries out time series sampling. For detailed analysis, we often required large number of samples. Specify number of samples to use for the explanation generation using <code class="docutils literal notranslate"><span class="pre">n_perturbation</span></code>.</p>
+<p>The following cells demonstrate the usage of TSICE to explain impact of latest part of the input timeseries.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">energy_load_forecasting.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsice_explanation</span> <span class="o">=</span> <span class="n">tsice_explainer</span><span class="o">.</span><span class="n">explain_instance</span><span class="p">(</span><span class="n">energy_df</span><span class="p">[[</span><span class="n">total_energy_col</span><span class="p">]][</span><span class="s1">&#39;2017-05-11&#39;</span><span class="p">:</span><span class="s1">&#39;2017-05-13&#39;</span><span class="p">],</span> <span class="n">n_perturbations</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+<section id="plot-tsice-explanation">
+<h3>Plot TSICE Explanation<a class="headerlink" href="#plot-tsice-explanation" title="Permalink to this heading">#</a></h3>
+<p>Paste the below code snippet with plot utilities into a cell in <code class="docutils literal notranslate"><span class="pre">energy_load_forecasting.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_timeseries</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;time series&quot;</span><span class="p">,</span> <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">timestamps</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">index</span>
+
+    <span class="n">trace</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">timestamps</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">ts</span><span class="p">[</span><span class="n">ts</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span>
+        <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">),</span>
+        <span class="n">showlegend</span><span class="o">=</span><span class="n">showlegend</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">plot_timeseries</span><span class="p">(</span>
+    <span class="n">ts</span><span class="p">,</span>
+    <span class="n">color</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span>
+    <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;time series&quot;</span><span class="p">,</span>
+<span class="p">):</span>
+
+    <span class="n">showlegend</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">ts</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">color</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data</span><span class="p">}</span>
+    <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">ts_data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ts</span><span class="p">):</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts_data</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">color</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data</span><span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">color</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+    <span class="n">first</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">ts</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">first</span><span class="p">:</span>
+            <span class="n">showlegend</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="n">add_timeseries</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">showlegend</span><span class="o">=</span><span class="n">showlegend</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">first</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+
+
+<span class="k">def</span> <span class="nf">plot_tsice_explanation</span><span class="p">(</span><span class="n">explanation</span><span class="p">,</span> <span class="n">forecast_horizon</span><span class="p">):</span>
+    <span class="n">original_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">explanation</span><span class="p">[</span><span class="s2">&quot;data_x&quot;</span><span class="p">])</span>
+    <span class="n">perturbations</span> <span class="o">=</span> <span class="n">explanation</span><span class="p">[</span><span class="s2">&quot;perturbations&quot;</span><span class="p">]</span>
+    <span class="n">forecasts_on_perturbations</span> <span class="o">=</span> <span class="n">explanation</span><span class="p">[</span><span class="s2">&quot;forecasts_on_perturbations&quot;</span><span class="p">]</span>
+
+    <span class="n">new_perturbations</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">new_timestamps</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">pred_ts</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">original_ts</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">infer_freq</span><span class="p">(</span><span class="n">original_ts</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">forecast_horizon</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">new_timestamps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">original_ts</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">original_ts</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">freq</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">perturbation</span> <span class="ow">in</span> <span class="n">perturbations</span><span class="p">:</span>
+        <span class="n">new_perturbations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">perturbation</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">forecast</span> <span class="ow">in</span> <span class="n">forecasts_on_perturbations</span><span class="p">:</span>
+        <span class="n">pred_ts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">forecast</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">new_timestamps</span><span class="p">))</span>
+
+    <span class="n">pred_original_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">explanation</span><span class="p">[</span><span class="s2">&quot;current_forecast&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">new_timestamps</span>
+    <span class="p">)</span>
+
+    <span class="c1"># plot perturbed timeseries</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plot_timeseries</span><span class="p">(</span>
+        <span class="n">ts</span><span class="o">=</span><span class="n">new_perturbations</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightgreen&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;perturbed timeseries samples&quot;</span>
+    <span class="p">)</span>
+    <span class="c1"># plot original timeseries</span>
+    <span class="n">plot_timeseries</span><span class="p">(</span>
+        <span class="n">ts</span><span class="o">=</span><span class="n">original_ts</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;input/original timeseries&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># plot varying forecast range</span>
+    <span class="n">plot_timeseries</span><span class="p">(</span>
+        <span class="n">ts</span><span class="o">=</span><span class="n">pred_ts</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;forecast on perturbed samples&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># plot original forecast</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plot_timeseries</span><span class="p">(</span>
+        <span class="n">ts</span><span class="o">=</span><span class="n">pred_original_ts</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;original forecast&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">template</span><span class="o">=</span><span class="s2">&quot;plotly_white&quot;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;Time Series Individual Conditional Expectation (TSICE) Plot&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;Datetime&quot;</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="n">title_text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">original_ts</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_tsice_explanation</span><span class="p">(</span><span class="n">tsice_explanation</span><span class="p">,</span> <span class="n">forecast_horizon</span><span class="o">=</span><span class="n">lookahead</span><span class="p">)</span>
+<span class="n">dataset_plot_bytes</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">to_image</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">dataset_plot_bytes</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Plot the TSICE with derived features to analyze the impact of the input time series on the forecast, in terms of time series data statistics.</p>
+<p>Paste the below code snippet with plot utilities into a cell in <code class="docutils literal notranslate"><span class="pre">energy_load_forecasting.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_tsice_with_observed_features</span><span class="p">(</span><span class="n">explanation</span><span class="p">,</span> <span class="n">feature_per_row</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">explanation</span><span class="p">[</span><span class="s2">&quot;data_x&quot;</span><span class="p">])</span>
+    <span class="n">n_row</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">explanation</span><span class="p">[</span><span class="s2">&quot;feature_names&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">feature_per_row</span><span class="p">))</span>
+    <span class="n">feat_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">explanation</span><span class="p">[</span><span class="s2">&quot;feature_values&quot;</span><span class="p">])</span>
+
+    <span class="n">spec</span> <span class="o">=</span> <span class="p">[[{}</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">feature_per_row</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_row</span><span class="p">)]</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span><span class="n">n_row</span><span class="p">,</span> <span class="n">feature_per_row</span><span class="p">,</span> <span class="n">specs</span><span class="o">=</span><span class="n">spec</span><span class="p">)</span>
+
+    <span class="n">row_id</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">col_id</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">showlegend</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">feat</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">explanation</span><span class="p">[</span><span class="s2">&quot;feature_names&quot;</span><span class="p">]):</span>
+        <span class="n">x_feat</span> <span class="o">=</span> <span class="n">feat_values</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">trend_fit</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+        <span class="n">trend_line</span> <span class="o">=</span> <span class="n">trend_fit</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_feat</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">explanation</span><span class="p">[</span><span class="s2">&quot;signed_impact&quot;</span><span class="p">])</span>
+        <span class="n">x_trend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">x_feat</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">x_feat</span><span class="p">),</span> <span class="mi">101</span><span class="p">)</span>
+        <span class="n">y_trend</span> <span class="o">=</span> <span class="n">trend_line</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_trend</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+            <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">x_feat</span><span class="p">,</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">explanation</span><span class="p">[</span><span class="s2">&quot;signed_impact&quot;</span><span class="p">],</span>
+                <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;markers&quot;</span><span class="p">,</span>
+                <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">row</span><span class="o">=</span><span class="n">row_id</span><span class="p">,</span>
+            <span class="n">col</span><span class="o">=</span><span class="n">col_id</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+            <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">x_trend</span><span class="p">,</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">y_trend</span><span class="p">,</span>
+                <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">),</span>
+                <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;correlation between forecast and observed feature&quot;</span><span class="p">,</span>
+                <span class="n">showlegend</span><span class="o">=</span><span class="n">showlegend</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">row</span><span class="o">=</span><span class="n">row_id</span><span class="p">,</span>
+            <span class="n">col</span><span class="o">=</span><span class="n">col_id</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">current_value</span> <span class="o">=</span> <span class="n">explanation</span><span class="p">[</span><span class="s2">&quot;current_feature_values&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">reference_line</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">current_value</span><span class="p">,</span> <span class="n">current_value</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">explanation</span><span class="p">[</span><span class="s2">&quot;signed_impact&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">explanation</span><span class="p">[</span><span class="s2">&quot;signed_impact&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span>
+            <span class="n">line</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">scatter</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;firebrick&quot;</span><span class="p">,</span> <span class="n">dash</span><span class="o">=</span><span class="s2">&quot;dash&quot;</span><span class="p">),</span>
+            <span class="n">showlegend</span><span class="o">=</span><span class="n">showlegend</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;current value&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">reference_line</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="n">row_id</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">col_id</span><span class="p">)</span>
+
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">feat</span><span class="si">}</span><span class="s2">&lt;b&gt;&quot;</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="n">row_id</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">col_id</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;&amp;#916; forecast&lt;b&gt;&quot;</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="n">row_id</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">col_id</span><span class="p">)</span>
+
+        <span class="n">showlegend</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">col_id</span> <span class="o">==</span> <span class="n">feature_per_row</span><span class="p">:</span>
+            <span class="n">col_id</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">row_id</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">col_id</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&lt;b&gt;Impact of Derived Variable On The Forecast&lt;/b&gt;&quot;</span><span class="p">,</span>
+        <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+        <span class="n">showlegend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">legend</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">yanchor</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">xanchor</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_tsice_with_observed_features</span><span class="p">(</span><span class="n">tsice_explanation</span><span class="p">)</span>
+<span class="n">dataset_plot_bytes</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">to_image</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">dataset_plot_bytes</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Continue to the next demo on <a class="reference internal" href="concrete_comprehensive_strength.html"><span class="doc std std-doc">Concrete Comprehensive Strength</span></a>.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./books"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="engine_fault_detection.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Engine Fault Detection</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="concrete_comprehensive_strength.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Concrete Compressive Strength</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-individual-conditional-expectation">Time Series Individual Conditional Expectation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-dataset">Plot the dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">Data Preprocessing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">Train Test Split</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robust-scaling-of-the-data">Robust Scaling of the data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-pre-trained-model">Load Pre-Trained Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-tsice-explainer">Initializing TSICE Explainer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-tsice-explanation">Compute TSICE Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-tsice-explanation">Plot TSICE Explanation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By IBM Research
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

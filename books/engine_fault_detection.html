@@ -1,0 +1,755 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Engine Fault Detection &#8212; KDD Demo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'books/engine_fault_detection';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Energy Load Forecasting" href="energy_load_forecasting.html" />
+    <link rel="prev" title="Setup Instructions" href="prerequisites.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    AI Explainability 360 Toolkit for Time-Series and Industrial Use Cases
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Setup Instructions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Engine Fault Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy_load_forecasting.html">Energy Load Forecasting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concrete_comprehensive_strength.html">Concrete Compressive Strength</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Trusted-AI/AIX360/tree/master" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Trusted-AI/AIX360/tree/master/issues/new?title=Issue%20on%20page%20%2Fbooks/engine_fault_detection.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/books/engine_fault_detection.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Engine Fault Detection</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-saliency-explanation">Time Series Saliency Explanation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-local-interpretable-model-agnostic-explanation">Time Series Local Interpretable Model-Agnostic Explanation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-dataset">Plot the dataset.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-pre-trained-model">Download Pre-Trained Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-tssaliencyexplainer">Initialize TSSaliencyExplainer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-tssaliency-explanation">Compute TSSaliency Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-tssaliency-explanation">Plot TSSaliency Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-tslimeexplainer">Initialize TSLimeExplainer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-tslime-explanation">Compute TSLime Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-tslime-explanation">Plot TSLime Explanation</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="engine-fault-detection">
+<span id="efd-references-introduction"></span><h1>Engine Fault Detection<a class="headerlink" href="#engine-fault-detection" title="Permalink to this heading">#</a></h1>
+<p>Diagnostics is essential for assets and equiment in industrial domain. Specifically, fault detection is required to avoid asset failures in the future. In this demo, we cover a use case on fault detection in an automotive subsystem using <a class="reference external" href="https://timeseriesclassification.com/description.php?Dataset=FordA">FordA engine noise data</a>.</p>
+<p>The FordA dataset is used in IEEE World Congress on Computational Intelligence (WCCI) competition in 2008. Each case/instance has 500 measurements of engine noise and the target is to diagnose whether a certain symptom (defect) exists or not in the automotive subsystem. Train and test data sets were collected in typical operating conditions, with minimal noise contamination. A classification model can be trained to detect fault for each test instance.</p>
+<p>For this demo, we use the transformer model trained in <a class="reference external" href="https://keras.io/examples/timeseries/timeseries_transformer_classification/">Keras time series examples</a>. The model can be downloaded from <a class="reference external" href="https://huggingface.co/keras-io/timeseries_transformer_classification">Huggingface Hub</a>. We use aix360’s <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tssaliency/tssaliency.py">Time Series Saliency Explainer (TSSaliencyExplainer)</a> to explain how each time point or temporal segments influenced the Keras transformer model’s prediction for a test instance. Further, we use aix360’s <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tslime/tslime.py">Time Series Local Interpretable Model-agnostic Explainer (TSLime)</a> to explain how much (magnitude) each time point the test instance influenced the Keras transformer model’s prediction.</p>
+<p>For more algorithmic details on TSSaliency and TSLime, you can refer to <a class="reference internal" href="#efd-references-tssaliency"><span class="std std-ref">Time Series Saliency Explanation</span></a> and <a class="reference internal" href="#efd-references-tslime"><span class="std std-ref">Time Series Local Interpretable Model-Agnostic Explanation</span></a> sections respectively.</p>
+<p>To start this hands on demo, skip to <a class="reference internal" href="#efd-references-instructions"><span class="std std-ref">Instructions</span></a>.</p>
+<section id="time-series-saliency-explanation">
+<span id="efd-references-tssaliency"></span><h2>Time Series Saliency Explanation<a class="headerlink" href="#time-series-saliency-explanation" title="Permalink to this heading">#</a></h2>
+<p>Time Series Saliency (TSSaliency) Explainer is a model agnostic saliency explainer for time series associate tasks. The saliency supports univariate and multivariate use cases. It explains temporal importance of different variates on the model prediction. TSSaliency incorporates an integrated gradient method for saliency estimation and, therefore, provides reasonable values for functions that are continuous, and differentiable almost everywhere. It may be ill-suited to certain types of ensemble models such as Random Forests. The saliency measure involves the notion of a base value. For example, the base value can be the constant signal with average value. The saliency measure is computed by integrating the model sensitivity over a trajectory from the base value to the time series signal. The TSSaliency explainer provides variate wise contributions to model prediction at a temporal resolution.</p>
+</section>
+<section id="time-series-local-interpretable-model-agnostic-explanation">
+<span id="efd-references-tslime"></span><h2>Time Series Local Interpretable Model-Agnostic Explanation<a class="headerlink" href="#time-series-local-interpretable-model-agnostic-explanation" title="Permalink to this heading">#</a></h2>
+<p>Advanced time series models are complex and often hard to interpret. Time Series Local Interpretable Model-agnostic Explainer (TSLime) is a model-agnostic local time series explainer. It explains a time series model behavior using an approximate linear model as surrogate. TSLime approximates model response by evaluating the model over time series samples generated by applying time series perturbation techniques. The explanation produced by TSLime is the weights of the linear model over different time point observations. The relative signed value of the explanation is indicative of model sensitivity at temporal resolution. TSLime uses the recent time context length for the local surrogate model fitting. TSLime supports univariate and multi-variate use cases related to forecasting, time series classification, regression and anomaly detection.</p>
+</section>
+<section id="instructions">
+<span id="efd-references-instructions"></span><h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Create a new notebook <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code> in Jupyter lab to run the demo on engine fault detection use case. Refer to the instructions in <a class="reference internal" href="prerequisites.html#prereq-references-verify-installation"><span class="std std-ref">prerequisites</span></a>.</p></li>
+<li><p>Follow all the below sections and execute the code by pasting into the newly created notebook <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code>.</p></li>
+</ul>
+<section id="imports">
+<h3>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h3>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="c1"># to suppress unrelated tensorflow warnings while importing aix360.datasets</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TF_CPP_MIN_LOG_LEVEL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;3&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">huggingface_hub</span> <span class="kn">import</span> <span class="n">from_pretrained_keras</span>
+<span class="kn">from</span> <span class="nn">aix360.datasets</span> <span class="kn">import</span> <span class="n">FordDataset</span>
+<span class="kn">from</span> <span class="nn">aix360.algorithms.tsutils.tsframe</span> <span class="kn">import</span> <span class="n">tsFrame</span>
+<span class="kn">from</span> <span class="nn">aix360.algorithms.tsutils.model_wrappers</span> <span class="kn">import</span> <span class="n">Tensor_Based_Classification_Model</span>
+<span class="kn">from</span> <span class="nn">aix360.algorithms.tssaliency.tssaliency</span> <span class="kn">import</span> <span class="n">TSSaliencyExplainer</span>
+<span class="kn">from</span> <span class="nn">aix360.algorithms.tslime.tslime</span> <span class="kn">import</span> <span class="n">TSLimeExplainer</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">from</span> <span class="nn">aix360.algorithms.tsutils.tsperturbers</span> <span class="kn">import</span> <span class="n">BlockBootstrapPerturber</span>
+<span class="kn">from</span> <span class="nn">huggingface_hub.utils</span> <span class="kn">import</span> <span class="n">logging</span> <span class="k">as</span> <span class="n">h_logging</span>
+
+<span class="c1"># huggingface hub warnings</span>
+<span class="n">h_logging</span><span class="o">.</span><span class="n">set_verbosity_error</span><span class="p">()</span>
+
+<span class="c1"># tensorflow warnings</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="load-dataset">
+<h3>Load Dataset<a class="headerlink" href="#load-dataset" title="Permalink to this heading">#</a></h3>
+<p>Download the FordA dataset from <a class="reference external" href="https://timeseriesclassification.com/aeon-toolkit/FordA.zip">timeseriesclassification.com</a> using the below code snippet. For use-case and dataset description, refer to <a class="reference internal" href="#efd-references-introduction"><span class="std std-ref">introduction</span></a>.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code> in Jupyter lab and run the cell to download the data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">input_length</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">FordDataset</span><span class="p">()</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If the above dataset url does not work, follow the below steps. Otherwise, skip to <a class="reference internal" href="#efd-references-plot-dataset"><span class="std std-ref">Plot the dataset</span></a>.</p>
+<ul class="simple">
+<li><p>Install aeon library using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/aeon-toolkit/aeon.git</span></code> to download the data using <a class="reference external" href="https://www.aeon-toolkit.org/en/latest/api_reference/auto_generated/aeon.datasets.load_classification.html#aeon.datasets.load_classification">aeon APIs</a>.</p></li>
+<li><p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code> in Jupyter lab and run the cell to download the data using <code class="docutils literal notranslate"><span class="pre">aeon</span></code> apis.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aeon.datasets</span> <span class="kn">import</span> <span class="n">load_classification</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">meta</span> <span class="o">=</span> <span class="n">load_classification</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ArrowHead&quot;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">y</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">22</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+<section id="plot-the-dataset">
+<span id="efd-references-plot-dataset"></span><h4>Plot the dataset.<a class="headerlink" href="#plot-the-dataset" title="Permalink to this heading">#</a></h4>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">x_train</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;FordA - 1 Time Series Reading of 500 Measurements&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+<section id="download-pre-trained-model">
+<h3>Download Pre-Trained Model<a class="headerlink" href="#download-pre-trained-model" title="Permalink to this heading">#</a></h3>
+<p>Download pre-trained <a class="reference external" href="https://keras.io/examples/timeseries/timeseries_transformer_classification/">Keras trasnformer model</a> from <a class="reference external" href="https://huggingface.co/keras-io/timeseries_transformer_classification">HuggingFace Hub</a>.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">from_pretrained_keras</span><span class="p">(</span><span class="s2">&quot;keras-io/timeseries_transformer_classification&quot;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Test model accuracy.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">class_pos</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># to select class probability for explanation</span>
+<span class="n">binary_model</span> <span class="o">=</span> <span class="n">Tensor_Based_Classification_Model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> 
+                                                 <span class="n">class_pos</span><span class="o">=</span><span class="n">class_pos</span><span class="p">,</span> 
+                                                 <span class="n">input_length</span><span class="o">=</span><span class="n">input_length</span><span class="p">,</span> 
+                                                 <span class="n">n_features</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">test_sample_size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">binary_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">test_sample_size</span><span class="p">,</span><span class="o">...</span><span class="p">],</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;model accuracy for </span><span class="si">{}</span><span class="s2"> samples: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">test_sample_size</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">[:</span><span class="n">test_sample_size</span><span class="p">],</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))))</span>
+</pre></div>
+</div>
+</section>
+<section id="initialize-tssaliencyexplainer">
+<h3>Initialize TSSaliencyExplainer<a class="headerlink" href="#initialize-tssaliencyexplainer" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tssaliency/tssaliency.py">TSSaliencyExplainer</a> uses integrated gradients over the input timeseries to compute saliency metric. If user brings their own gradient computation function, it can be used using parameter <code class="docutils literal notranslate"><span class="pre">gradient_function</span></code>. By default, <code class="docutils literal notranslate"><span class="pre">aix360.algorithms.tssaliency.gradient.mc_gradient_compute</span></code> is used. Increasing <code class="docutils literal notranslate"><span class="pre">n_samples</span></code> and <code class="docutils literal notranslate"><span class="pre">gradient_samples</span></code> increases quality of the explanation.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tssaliency_explainer</span> <span class="o">=</span> <span class="n">TSSaliencyExplainer</span><span class="p">(</span><span class="n">model</span><span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">binary_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">),</span>
+                        <span class="n">input_length</span><span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span>
+                        <span class="n">n_samples</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                        <span class="n">gradient_samples</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                               <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="compute-tssaliency-explanation">
+<h3>Compute TSSaliency Explanation<a class="headerlink" href="#compute-tssaliency-explanation" title="Permalink to this heading">#</a></h3>
+<p>Compute saliency metric for a given input timeseries. Base value is required for explanation computation and can be provided during initialization of the explainer or during explanation computation. Default is to compute mean of the signal.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">indx</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">instance</span> <span class="o">=</span> <span class="n">x_test</span><span class="p">[</span><span class="n">indx</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="n">base_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># base value </span>
+
+<span class="n">ts_instance</span> <span class="o">=</span> <span class="n">tsFrame</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span> <span class="c1"># tsFrame instance</span>
+<span class="n">ts_instance</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ts_instance</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">tssaliency_explanation</span> <span class="o">=</span> <span class="n">tssaliency_explainer</span><span class="o">.</span><span class="n">explain_instance</span><span class="p">(</span><span class="n">ts_instance</span><span class="p">,</span> <span class="n">base_value</span><span class="o">=</span><span class="n">base_value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>By Proposition 1 in “section 3 Mukund Sundararajan et al. Axiomatic Attribution for Deep Networks”, sum of saliency scores (Integrated Gradient) and model prediction delta (<code class="docutils literal notranslate"><span class="pre">f(instance)</span> <span class="pre">-</span> <span class="pre">f(base)</span></code>) between the input instance and the base value should be zero. As the value is closer to zero, quality of explanation is high.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">instance_prediction</span> <span class="o">=</span> <span class="n">tssaliency_explanation</span><span class="p">[</span><span class="s2">&quot;instance_prediction&quot;</span><span class="p">]</span>
+<span class="n">base_value_prediction</span> <span class="o">=</span> <span class="n">tssaliency_explanation</span><span class="p">[</span><span class="s2">&quot;base_value_prediction&quot;</span><span class="p">]</span>
+
+<span class="n">pred_delta</span> <span class="o">=</span> <span class="n">instance_prediction</span> <span class="o">-</span> <span class="n">base_value_prediction</span>
+<span class="n">saliency_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">tssaliency_explanation</span><span class="p">[</span><span class="s1">&#39;saliency&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum of Saliency scores (Integrated Gradient): </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">saliency_sum</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;f(instance) - f(base): </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pred_delta</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;|f(instance) - f(base) - sum IG|: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pred_delta</span> <span class="o">-</span> <span class="n">saliency_sum</span><span class="p">)))</span>
+</pre></div>
+</div>
+</section>
+<section id="plot-tssaliency-explanation">
+<h3>Plot TSSaliency Explanation<a class="headerlink" href="#plot-tssaliency-explanation" title="Permalink to this heading">#</a></h3>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_explanation</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">vmax</span><span class="p">):</span>
+    <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:],</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;seismic&#39;</span><span class="p">,</span><span class="n">vmin</span><span class="o">=-</span><span class="n">vmax</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># plot tssaliency explanation for the test point</span>
+<span class="n">max_abs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tssaliency_explanation</span><span class="p">[</span><span class="s1">&#39;saliency&#39;</span><span class="p">]))</span>
+<span class="n">plot_explanation</span><span class="p">(</span><span class="n">scores</span><span class="o">=</span><span class="n">tssaliency_explanation</span><span class="p">[</span><span class="s1">&#39;saliency&#39;</span><span class="p">],</span> 
+                 <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Time Series Saliency Explanation Plot for test point i=</span><span class="si">{}</span><span class="s2"> with P(Y=</span><span class="si">{}</span><span class="s2">)= </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">indx</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">class_pos</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">instance_prediction</span><span class="p">)),</span>
+                 <span class="n">vmax</span><span class="o">=</span><span class="n">max_abs</span><span class="p">)</span>
+
+<span class="c1"># plot smoothened tssaliency explanation for the test point</span>
+<span class="n">window</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">convolve_saliency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">tssaliency_explanation</span><span class="p">[</span><span class="s1">&#39;saliency&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">window</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">window</span>
+
+<span class="n">plot_explanation</span><span class="p">(</span><span class="n">scores</span><span class="o">=</span><span class="n">convolve_saliency</span><span class="p">,</span> 
+                 <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Smoothened TSSaliency Plot for test point i=</span><span class="si">{}</span><span class="s2"> with P(Y=</span><span class="si">{}</span><span class="s2">)= </span><span class="si">{}</span><span class="s2"> over window=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">indx</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">class_pos</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">instance_prediction</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">window</span><span class="p">)),</span>
+                 <span class="n">vmax</span><span class="o">=</span><span class="n">max_abs</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+<section id="initialize-tslimeexplainer">
+<h3>Initialize TSLimeExplainer<a class="headerlink" href="#initialize-tslimeexplainer" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tslime/tslime.py"><code class="docutils literal notranslate"><span class="pre">TSLimeExplainer</span></code></a> requires a model function which is to be explained, and input (history) length used for the input model. The explanation is for selected latest window of length <code class="docutils literal notranslate"><span class="pre">relevant_history</span></code>. If <code class="docutils literal notranslate"><span class="pre">input_length=20</span></code> and <code class="docutils literal notranslate"><span class="pre">relevant_history=10</span></code>, explanation is computed for last 10 time points. The default linear model used for explanation is sklearn’s LinearRegression. If a different linear interpretable model is to be used, the model can be wrapped with <code class="docutils literal notranslate"><span class="pre">aix360.algorithms.tslime.surrogate.LinearSurrogateModel</span></code> and provided as param <code class="docutils literal notranslate"><span class="pre">local_interpretable_model</span></code>.</p>
+<p>The explainer uses <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/ef086583a1722b9a8714abc1ac6e8eeb9e3e3a2e/aix360/algorithms/tsutils/tsperturbers/tsperturber.py#L52">TSPerturber</a> for generating perturbed/simulated time series data to train the linear interpretable model. Available perturbers are <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tsutils/tsperturbers/block_bootstrap_perturber.py">“block-bootstrap”</a>(default), <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tsutils/tsperturbers/frequency_perturber.py">“frequency”</a>, <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tsutils/tsperturbers/moving_average_perturber.py">“moving_average”</a>, and <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tsutils/tsperturbers/ts_shift_perturber.py">“shift”</a>.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">relevant_history</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">tslime_explainer</span> <span class="o">=</span> <span class="n">TSLimeExplainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">binary_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">input_length</span><span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">relevant_history</span><span class="o">=</span><span class="n">relevant_history</span><span class="p">,</span>
+    <span class="n">perturbers</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">BlockBootstrapPerturber</span><span class="p">(</span><span class="n">window_length</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">input_length</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">block_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">block_swap</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">n_perturbations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">random_seed</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="compute-tslime-explanation">
+<h3>Compute TSLime Explanation<a class="headerlink" href="#compute-tslime-explanation" title="Permalink to this heading">#</a></h3>
+<p>Compute lime weights for previously used test instance. Explanation object <code class="docutils literal notranslate"><span class="pre">explanation</span></code> contains the history weights computed for selected time window (relevant history) and surrogate prediction for this selected time window.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tslime_explanation</span> <span class="o">=</span> <span class="n">tslime_explainer</span><span class="o">.</span><span class="n">explain_instance</span><span class="p">(</span><span class="n">ts_instance</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="plot-tslime-explanation">
+<h3>Plot TSLime Explanation<a class="headerlink" href="#plot-tslime-explanation" title="Permalink to this heading">#</a></h3>
+<p>The TSLime explanation plot shows the normalized weights for each time point in relevant(selected) history window. Weights are normalized/scaled using mean absolute over all the weights.</p>
+<p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code> in Jupyter lab and run the cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">relevant_df</span> <span class="o">=</span> <span class="n">ts_instance</span><span class="p">[</span><span class="o">-</span><span class="n">relevant_history</span><span class="p">:]</span>
+
+<span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">relevant_df</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Input Time Series&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+
+<span class="n">normalized_weights</span> <span class="o">=</span> <span class="p">(</span><span class="n">tslime_explanation</span><span class="p">[</span><span class="s2">&quot;history_weights&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tslime_explanation</span><span class="p">[</span><span class="s2">&quot;history_weights&quot;</span><span class="p">])))</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ts_instance</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="n">relevant_history</span><span class="p">:],</span> <span class="n">normalized_weights</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;TSLime Weights (Normalized)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Time Series Lime Explanation Plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Continue to the next demo on <a class="reference internal" href="energy_load_forecasting.html"><span class="doc std std-doc">Energy Load Forecasting</span></a>.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./books"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="prerequisites.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Setup Instructions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="energy_load_forecasting.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Energy Load Forecasting</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-saliency-explanation">Time Series Saliency Explanation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-local-interpretable-model-agnostic-explanation">Time Series Local Interpretable Model-Agnostic Explanation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">Load Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-dataset">Plot the dataset.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-pre-trained-model">Download Pre-Trained Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-tssaliencyexplainer">Initialize TSSaliencyExplainer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-tssaliency-explanation">Compute TSSaliency Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-tssaliency-explanation">Plot TSSaliency Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-tslimeexplainer">Initialize TSLimeExplainer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-tslime-explanation">Compute TSLime Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-tslime-explanation">Plot TSLime Explanation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By IBM Research
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
