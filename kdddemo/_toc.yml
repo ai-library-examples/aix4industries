@@ -1,0 +1,10 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: books/intro
+chapters:
+  - file: books/prerequisites
+  - file: books/engine_fault_detection
+  - file: books/energy_load_forecasting
+  - file: books/concrete_comprehensive_strength
