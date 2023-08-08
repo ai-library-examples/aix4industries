@@ -8,7 +8,7 @@ Please prepare your system to ensure that the following software requirements ar
 - Python 3.10
 - Terminal (or relevant environment such as git bash shell, Windows Terminal etc. to execute commands throughout the tutorial).
 - Internet connection (must be able to download from the internet.)
-- Kaggle account (to download data)
+- Kaggle account (to download <a href="https://www.kaggle.com/datasets/nicholasjhana/energy-consumption-generation-prices-and-weather?resource=download" target="_blank">data</a>)
 
 Once the requirements above are met, follow instructions in [Installation](prereq:references:installation) to prepare your python environment for this demo.
 
