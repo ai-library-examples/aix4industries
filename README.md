@@ -14,3 +14,12 @@ Tutorial website can be accessed at https://sites.google.com/view/kdd2023-aix4in
 
 ## Setup Local
 Refer [Setup Instructions](https://pages.github.ibm.com/Giridhar-Ganapavarapu/aix-books/books/prerequisites.html) to review pre-requisites and prepare your environment for the tutorial.
+
+### Other resources
+- https://research.ibm.com/publications/ai-explainability-360-toolkit-for-time-series-and-industrial-use-cases
+- Explainability algorithms used in this demo
+    - [TSSaliency](https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tssaliency/tssaliency.py)
+    - [TSLime](https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tslime/tslime.py)
+    - [TSICE](https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tsice/tsice.py)
+    - [NNContrastive](https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/nncontrastive/nncontrastive.py)
+    - [GCE](https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/gce/gce.py)
