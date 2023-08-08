@@ -8,6 +8,7 @@ Please prepare your system to ensure that the following software requirements ar
 - Python 3.10
 - Terminal (or relevant environment such as git bash shell, Windows Terminal etc. to execute commands throughout the tutorial).
 - Internet connection (must be able to download from the internet.)
+- Kaggle account (to download data)
 
 Once the requirements above are met, follow instructions in [Installation](prereq:references:installation) to prepare your python environment for this demo.
 
@@ -56,31 +57,21 @@ Now, install aix360 library using [these instructions](prereq:references:install
 
 This section installs all the required python dependencies for this tutorial. If you are using vanilla Python (not Conda), follow the [below instructions](prereq:references:pip). If you are using conda based environments, follow [Conda](prereq:references:conda) instructions.
 
-Note: Tensorflow 2.9.3 is not available for M1 chip users.
 
 (prereq:references:pip)=
 #### PIP
-Follow the instructions [here](https://github.com/Trusted-AI/AIX360#pip-installation-of-ai-explainability-360) to install AIX360 library using pip.
+Create virtual environment using `venv`.
 
 Paste the below commands in Terminal and execute them sequentially.
 
 ```bash
 python -m venv aix360_kdd
-```
-
-```bash
 source aix360_kdd/bin/activate
 ```
 
-```bash
-python -m pip install xlrd huggingface-hub jupyterlab aix360[tssaliency,tsice,tslime,nncontrastive,gce]==0.3.0
-```
-
-Now, your environment is ready use aix360's time-series explainers. This tutorial uses [Jupyter Lab](https://jupyter.org/) to run and visualize the explanations. Follow [Jupyterlab](prereq:references:jupyterlab) section to start Jupyter lab.
-
 (prereq:references:conda)=
 #### Conda
-Please follow the instructions [here](https://github.com/Trusted-AI/AIX360#conda) to install AIX360 library using Conda.
+Create virtual environment using Conda.
 
 Paste the below commands in Terminal and execute them sequentially.
 
@@ -89,11 +80,25 @@ conda create --name "aix360_kdd" python=3.10 -y
 conda activate aix360_kdd
 ```
 
+Now that the virtual environment is created, install aix360 and other dependencies. Tensorflow 2.9.3 cannot be installed on Mac with M1 chip. To install aix360 on M1 chip Mac, follow [these instructions](prereq:references:m1). All other users can run the below command to install aix360.
+
+Paste the below commands in Terminal and execute them sequentially.
+
 ```bash
 python -m pip install xlrd huggingface-hub jupyterlab aix360[tssaliency,tsice,tslime,nncontrastive,gce]==0.3.0
 ```
 
-Now, your environment is ready use aix360's time-series explainers. This tutorial uses [Jupyter Lab](https://jupyter.org/) to run and visualize the explanations. Follow [Jupyterlab](prereq:references:jupyterlab) section to start Jupyter lab.
+(prereq:references:m1)=
+#### M1 Chip
+
+Paste the below commands in Terminal and execute them sequentially.
+
+```bash
+python -m pip install tensorflow-macos tensorflow-metal
+python -m pip install xlrd huggingface-hub jupyterlab aix360[tssaliency,tsice,tslime,gce]==0.3.0
+```
+
+Now, your environment is ready to use aix360's time-series explainers. This tutorial uses [Jupyter Lab](https://jupyter.org/) to run and visualize the explanations. Follow [Jupyterlab](prereq:references:jupyterlab) section to start Jupyter lab.
 
 (prereq:references:jupyterlab)=
 ### JupyterLab

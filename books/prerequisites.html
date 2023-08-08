@@ -362,6 +362,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-aix360">Install AIX360</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pip">PIP</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conda">Conda</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#m1-chip">M1 Chip</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a><ul class="nav section-nav flex-column">
@@ -391,6 +392,7 @@ document.write(`
 <li><p>Python 3.10</p></li>
 <li><p>Terminal (or relevant environment such as git bash shell, Windows Terminal etc. to execute commands throughout the tutorial).</p></li>
 <li><p>Internet connection (must be able to download from the internet.)</p></li>
+<li><p>Kaggle account (to download data)</p></li>
 </ul>
 <p>Once the requirements above are met, follow instructions in <a class="reference internal" href="#prereq-references-installation"><span class="std std-ref">Installation</span></a> to prepare your python environment for this demo.</p>
 </section>
@@ -429,34 +431,37 @@ document.write(`
 <section id="install-aix360">
 <span id="prereq-references-install-aix360"></span><h3>Install AIX360<a class="headerlink" href="#install-aix360" title="Permalink to this heading">#</a></h3>
 <p>This section installs all the required python dependencies for this tutorial. If you are using vanilla Python (not Conda), follow the <a class="reference internal" href="#prereq-references-pip"><span class="std std-ref">below instructions</span></a>. If you are using conda based environments, follow <a class="reference internal" href="#prereq-references-conda"><span class="std std-ref">Conda</span></a> instructions.</p>
-<p>Note: Tensorflow 2.9.3 is not available for M1 chip users.</p>
 <section id="pip">
 <span id="prereq-references-pip"></span><h4>PIP<a class="headerlink" href="#pip" title="Permalink to this heading">#</a></h4>
-<p>Follow the instructions <a class="reference external" href="https://github.com/Trusted-AI/AIX360#pip-installation-of-ai-explainability-360">here</a> to install AIX360 library using pip.</p>
+<p>Create virtual environment using <code class="docutils literal notranslate"><span class="pre">venv</span></code>.</p>
 <p>Paste the below commands in Terminal and execute them sequentially.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>aix360_kdd
+<span class="nb">source</span><span class="w"> </span>aix360_kdd/bin/activate
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>aix360_kdd/bin/activate
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>xlrd<span class="w"> </span>huggingface-hub<span class="w"> </span>jupyterlab<span class="w"> </span>aix360<span class="o">[</span>tssaliency,tsice,tslime,nncontrastive,gce<span class="o">]==</span><span class="m">0</span>.3.0
-</pre></div>
-</div>
-<p>Now, your environment is ready use aix360’s time-series explainers. This tutorial uses <a class="reference external" href="https://jupyter.org/">Jupyter Lab</a> to run and visualize the explanations. Follow <a class="reference internal" href="#prereq-references-jupyterlab"><span class="std std-ref">Jupyterlab</span></a> section to start Jupyter lab.</p>
 </section>
 <section id="conda">
 <span id="prereq-references-conda"></span><h4>Conda<a class="headerlink" href="#conda" title="Permalink to this heading">#</a></h4>
-<p>Please follow the instructions <a class="reference external" href="https://github.com/Trusted-AI/AIX360#conda">here</a> to install AIX360 library using Conda.</p>
+<p>Create virtual environment using Conda.</p>
 <p>Paste the below commands in Terminal and execute them sequentially.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;aix360_kdd&quot;</span><span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10<span class="w"> </span>-y
 conda<span class="w"> </span>activate<span class="w"> </span>aix360_kdd
 </pre></div>
 </div>
+<p>Now that the virtual environment is created, install aix360 and other dependencies. Tensorflow 2.9.3 cannot be installed on Mac with M1 chip. To install aix360 on M1 chip Mac, follow <a class="reference internal" href="#prereq-references-m1"><span class="std std-ref">these instructions</span></a>. All other users can run the below command to install aix360.</p>
+<p>Paste the below commands in Terminal and execute them sequentially.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>xlrd<span class="w"> </span>huggingface-hub<span class="w"> </span>jupyterlab<span class="w"> </span>aix360<span class="o">[</span>tssaliency,tsice,tslime,nncontrastive,gce<span class="o">]==</span><span class="m">0</span>.3.0
 </pre></div>
 </div>
-<p>Now, your environment is ready use aix360’s time-series explainers. This tutorial uses <a class="reference external" href="https://jupyter.org/">Jupyter Lab</a> to run and visualize the explanations. Follow <a class="reference internal" href="#prereq-references-jupyterlab"><span class="std std-ref">Jupyterlab</span></a> section to start Jupyter lab.</p>
+</section>
+<section id="m1-chip">
+<span id="prereq-references-m1"></span><h4>M1 Chip<a class="headerlink" href="#m1-chip" title="Permalink to this heading">#</a></h4>
+<p>Paste the below commands in Terminal and execute them sequentially.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>tensorflow-macos<span class="w"> </span>tensorflow-metal
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>xlrd<span class="w"> </span>huggingface-hub<span class="w"> </span>jupyterlab<span class="w"> </span>aix360<span class="o">[</span>tssaliency,tsice,tslime,gce<span class="o">]==</span><span class="m">0</span>.3.0
+</pre></div>
+</div>
+<p>Now, your environment is ready to use aix360’s time-series explainers. This tutorial uses <a class="reference external" href="https://jupyter.org/">Jupyter Lab</a> to run and visualize the explanations. Follow <a class="reference internal" href="#prereq-references-jupyterlab"><span class="std std-ref">Jupyterlab</span></a> section to start Jupyter lab.</p>
 </section>
 </section>
 <section id="jupyterlab">
@@ -569,6 +574,7 @@ conda<span class="w"> </span>activate<span class="w"> </span>aix360_kdd
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-aix360">Install AIX360</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pip">PIP</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conda">Conda</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#m1-chip">M1 Chip</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a><ul class="nav section-nav flex-column">
