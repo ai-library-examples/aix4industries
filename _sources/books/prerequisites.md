@@ -32,8 +32,8 @@ Python 3.10 is a must for this tutorial. Installing python 3.10 is beyond the sc
 ### Install Python
 Following are few popular approaches to install python. You can use one of these approaches to install Python.
 
-- Download and install the python binaries from [this link](https://www.python.org/downloads/release/python-31011/).
-- If you need to maintain multiple python versions, use [pyenv](https://github.com/pyenv/pyenv#install-additional-python-versions).
+- Download and install the python binaries from <a href="https://www.python.org/downloads/release/python-31011/" target="_blank">this link</a>.
+- If you need to maintain multiple python versions, use <a href="https://github.com/pyenv/pyenv#install-additional-python-versions" target="_blank">pyenv</a>.
 - Use [Conda](prereq:references:install_conda).
 
 Type the below command in Terminal to verify Python installation.
@@ -48,7 +48,7 @@ Now, install aix360 library using [these instructions](prereq:references:install
 (prereq:references:install_conda)=
 ### Install Conda
 
-Refer to [this link](https://conda.io/projects/conda/en/latest/user-guide/install/index.html#regular-installation) to install Conda.
+Refer to <a href="https://conda.io/projects/conda/en/latest/user-guide/install/index.html#regular-installation" target="_blank">this link</a> to install Conda.
 
 Now, install aix360 library using [these instructions](prereq:references:install_aix360).
 
@@ -98,7 +98,7 @@ python -m pip install tensorflow-macos tensorflow-metal
 python -m pip install xlrd huggingface-hub jupyterlab aix360[tssaliency,tsice,tslime,gce]==0.3.0
 ```
 
-Now, your environment is ready to use aix360's time-series explainers. This tutorial uses [Jupyter Lab](https://jupyter.org/) to run and visualize the explanations. Follow [Jupyterlab](prereq:references:jupyterlab) section to start Jupyter lab.
+Now, your environment is ready to use aix360's time-series explainers. This tutorial uses <a href="https://jupyter.org/" target="_blank">Jupyter Lab</a> to run and visualize the explanations. Follow [Jupyterlab](prereq:references:jupyterlab) section to start Jupyter lab.
 
 (prereq:references:jupyterlab)=
 ### JupyterLab
