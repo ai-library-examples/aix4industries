@@ -4,7 +4,7 @@ Diagnostics is essential for assets and equiment in industrial domain. Specifica
 
 The FordA dataset is used in IEEE World Congress on Computational Intelligence (WCCI) competition in 2008. Each case/instance has 500 measurements of engine noise and the target is to diagnose whether a certain symptom (defect) exists or not in the automotive subsystem. Train and test data sets were collected in typical operating conditions, with minimal noise contamination. A classification model can be trained to detect fault for each test instance.
 
-For this demo, we use the transformer model trained in [Keras time series examples](https://keras.io/examples/timeseries/timeseries_transformer_classification/). The model can be downloaded from [Huggingface Hub](https://huggingface.co/keras-io/timeseries_transformer_classification). We use aix360's [Time Series Saliency Explainer (TSSaliencyExplainer)](https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tssaliency/tssaliency.py) to explain how each time point or temporal segments influenced the Keras transformer model's prediction for a test instance. Further, we use aix360's [Time Series Local Interpretable Model-agnostic Explainer (TSLime)](https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tslime/tslime.py) to explain how much (magnitude) each time point the test instance influenced the Keras transformer model's prediction.
+For this demo, we use the transformer model trained in [Keras time series examples](https://keras.io/examples/timeseries/timeseries_transformer_classification/). The model can be downloaded from [Huggingface Hub](https://huggingface.co/keras-io/timeseries_transformer_classification). We use aix360's [Time Series Saliency Explainer (TSSaliencyExplainer)](https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tssaliency/tssaliency.py) to explain how each time point or temporal segments influenced the Keras transformer model's prediction for a test instance. Further, we use aix360's [Time Series Local Interpretable Model-agnostic Explainer (TSLime)](https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tslime/tslime.py) to explain how much (magnitude) each time point in the test instance influenced the Keras transformer model's prediction.
 
 
 For more algorithmic details on TSSaliency and TSLime, you can refer to [Time Series Saliency Explanation](efd:references:tssaliency) and [Time Series Local Interpretable Model-Agnostic Explanation](efd:references:tslime) sections respectively.
@@ -31,14 +31,15 @@ Advanced time series models are complex and often hard to interpret. Time Series
 Paste the below code snippet into a cell in `engine_fault_detection.ipynb` in Jupyter lab and run the cell.
 
 ```python
-import warnings
-warnings.filterwarnings("ignore")
-
 import os
+import warnings
+
+warnings.filterwarnings("ignore")
 # to suppress unrelated tensorflow warnings while importing aix360.datasets
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
 import logging
+import functools
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -51,7 +52,6 @@ from aix360.algorithms.tsutils.tsframe import tsFrame
 from aix360.algorithms.tsutils.model_wrappers import Tensor_Based_Classification_Model
 from aix360.algorithms.tssaliency.tssaliency import TSSaliencyExplainer
 from aix360.algorithms.tslime.tslime import TSLimeExplainer
-import functools
 from aix360.algorithms.tsutils.tsperturbers import BlockBootstrapPerturber
 from huggingface_hub.utils import logging as h_logging
 

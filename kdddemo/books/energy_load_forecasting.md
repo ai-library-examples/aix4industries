@@ -59,7 +59,7 @@ energy_df.index.freq = pd.infer_freq(energy_df.index)
 total_energy_col = 'total load actual'
 energy_df[total_energy_col] = energy_df[total_energy_col].interpolate(method='time', axis=0)
 
-energy_df.describe()
+energy_df[total_energy_col].describe()
 ```
 
 ## Plot the dataset
@@ -247,7 +247,7 @@ The following cells demonstrate the usage of TSICE to explain impact of latest p
 Paste the below code snippet into a cell in `energy_load_forecasting.ipynb` in Jupyter lab and run the cell.
 
 ```python
-tsice_explanation = tsice_explainer.explain_instance(energy_df[[total_energy_col]]['2017-05-11':'2017-05-13'], n_perturbations=25)
+tsice_explanation = tsice_explainer.explain_instance(energy_df[[total_energy_col]]['2017-05-11':'2017-05-13'], n_perturbations=100)
 
 ```
 
