@@ -435,7 +435,7 @@ document.write(`
 <span class="n">total_energy_col</span> <span class="o">=</span> <span class="s1">&#39;total load actual&#39;</span>
 <span class="n">energy_df</span><span class="p">[</span><span class="n">total_energy_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">energy_df</span><span class="p">[</span><span class="n">total_energy_col</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">energy_df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="n">energy_df</span><span class="p">[</span><span class="n">total_energy_col</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -614,7 +614,7 @@ document.write(`
 <p><code class="docutils literal notranslate"><span class="pre">TSICEExplainer</span></code> produces a local explanation, for the current instance. The local explanation can be produced via the <code class="docutils literal notranslate"><span class="pre">explain_instance</span></code> API call. For the explanation generation <code class="docutils literal notranslate"><span class="pre">TSICEExplainer</span></code> carries out time series sampling. For detailed analysis, we often required large number of samples. Specify number of samples to use for the explanation generation using <code class="docutils literal notranslate"><span class="pre">n_perturbation</span></code>.</p>
 <p>The following cells demonstrate the usage of TSICE to explain impact of latest part of the input timeseries.</p>
 <p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">energy_load_forecasting.ipynb</span></code> in Jupyter lab and run the cell.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsice_explanation</span> <span class="o">=</span> <span class="n">tsice_explainer</span><span class="o">.</span><span class="n">explain_instance</span><span class="p">(</span><span class="n">energy_df</span><span class="p">[[</span><span class="n">total_energy_col</span><span class="p">]][</span><span class="s1">&#39;2017-05-11&#39;</span><span class="p">:</span><span class="s1">&#39;2017-05-13&#39;</span><span class="p">],</span> <span class="n">n_perturbations</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsice_explanation</span> <span class="o">=</span> <span class="n">tsice_explainer</span><span class="o">.</span><span class="n">explain_instance</span><span class="p">(</span><span class="n">energy_df</span><span class="p">[[</span><span class="n">total_energy_col</span><span class="p">]][</span><span class="s1">&#39;2017-05-11&#39;</span><span class="p">:</span><span class="s1">&#39;2017-05-13&#39;</span><span class="p">],</span> <span class="n">n_perturbations</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
 </pre></div>
 </div>

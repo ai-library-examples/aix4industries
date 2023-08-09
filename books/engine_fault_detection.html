@@ -386,7 +386,7 @@ document.write(`
 <span id="efd-references-introduction"></span><h1>Engine Fault Detection<a class="headerlink" href="#engine-fault-detection" title="Permalink to this heading">#</a></h1>
 <p>Diagnostics is essential for assets and equiment in industrial domain. Specifically, fault detection is required to avoid asset failures in the future. In this demo, we cover a use case on fault detection in an automotive subsystem using <a class="reference external" href="https://timeseriesclassification.com/description.php?Dataset=FordA">FordA engine noise data</a>.</p>
 <p>The FordA dataset is used in IEEE World Congress on Computational Intelligence (WCCI) competition in 2008. Each case/instance has 500 measurements of engine noise and the target is to diagnose whether a certain symptom (defect) exists or not in the automotive subsystem. Train and test data sets were collected in typical operating conditions, with minimal noise contamination. A classification model can be trained to detect fault for each test instance.</p>
-<p>For this demo, we use the transformer model trained in <a class="reference external" href="https://keras.io/examples/timeseries/timeseries_transformer_classification/">Keras time series examples</a>. The model can be downloaded from <a class="reference external" href="https://huggingface.co/keras-io/timeseries_transformer_classification">Huggingface Hub</a>. We use aix360’s <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tssaliency/tssaliency.py">Time Series Saliency Explainer (TSSaliencyExplainer)</a> to explain how each time point or temporal segments influenced the Keras transformer model’s prediction for a test instance. Further, we use aix360’s <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tslime/tslime.py">Time Series Local Interpretable Model-agnostic Explainer (TSLime)</a> to explain how much (magnitude) each time point the test instance influenced the Keras transformer model’s prediction.</p>
+<p>For this demo, we use the transformer model trained in <a class="reference external" href="https://keras.io/examples/timeseries/timeseries_transformer_classification/">Keras time series examples</a>. The model can be downloaded from <a class="reference external" href="https://huggingface.co/keras-io/timeseries_transformer_classification">Huggingface Hub</a>. We use aix360’s <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tssaliency/tssaliency.py">Time Series Saliency Explainer (TSSaliencyExplainer)</a> to explain how each time point or temporal segments influenced the Keras transformer model’s prediction for a test instance. Further, we use aix360’s <a class="reference external" href="https://github.com/Trusted-AI/AIX360/blob/master/aix360/algorithms/tslime/tslime.py">Time Series Local Interpretable Model-agnostic Explainer (TSLime)</a> to explain how much (magnitude) each time point in the test instance influenced the Keras transformer model’s prediction.</p>
 <p>For more algorithmic details on TSSaliency and TSLime, you can refer to <a class="reference internal" href="#efd-references-tssaliency"><span class="std std-ref">Time Series Saliency Explanation</span></a> and <a class="reference internal" href="#efd-references-tslime"><span class="std std-ref">Time Series Local Interpretable Model-Agnostic Explanation</span></a> sections respectively.</p>
 <p>To start this hands on demo, skip to <a class="reference internal" href="#efd-references-instructions"><span class="std std-ref">Instructions</span></a>.</p>
 <section id="time-series-saliency-explanation">
@@ -406,14 +406,15 @@ document.write(`
 <section id="imports">
 <h3>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h3>
 <p>Paste the below code snippet into a cell in <code class="docutils literal notranslate"><span class="pre">engine_fault_detection.ipynb</span></code> in Jupyter lab and run the cell.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 <span class="c1"># to suppress unrelated tensorflow warnings while importing aix360.datasets</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TF_CPP_MIN_LOG_LEVEL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;3&quot;</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">functools</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -426,7 +427,6 @@ document.write(`
 <span class="kn">from</span> <span class="nn">aix360.algorithms.tsutils.model_wrappers</span> <span class="kn">import</span> <span class="n">Tensor_Based_Classification_Model</span>
 <span class="kn">from</span> <span class="nn">aix360.algorithms.tssaliency.tssaliency</span> <span class="kn">import</span> <span class="n">TSSaliencyExplainer</span>
 <span class="kn">from</span> <span class="nn">aix360.algorithms.tslime.tslime</span> <span class="kn">import</span> <span class="n">TSLimeExplainer</span>
-<span class="kn">import</span> <span class="nn">functools</span>
 <span class="kn">from</span> <span class="nn">aix360.algorithms.tsutils.tsperturbers</span> <span class="kn">import</span> <span class="n">BlockBootstrapPerturber</span>
 <span class="kn">from</span> <span class="nn">huggingface_hub.utils</span> <span class="kn">import</span> <span class="n">logging</span> <span class="k">as</span> <span class="n">h_logging</span>
 
