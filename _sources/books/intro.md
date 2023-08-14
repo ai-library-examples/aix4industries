@@ -5,9 +5,12 @@ In this tutorial, we plan to demonstrate the usage of [TSSaliency](https://githu
 
 Tutorial slides can be downloaded from [here](../aix360_kdd23.pdf).
 
-To run the demonstrations in this tutorial, your system must meet the software requirements provided in [Setup Instructions](./prerequisites.md).
+To run the demonstrations in this tutorial, your system must meet the software requirements provided in [Setup Instructions](./prerequisites.md). If you are using any part of this demo tutorial, please cite {cite}`ganapavarapu2023ai`.
 
 You can use the table of contents below, or the sidebar, or the "next/previous page" at the bottom of this web page to navigate and switch between the demo books.
 
 ```{tableofcontents}
 ```
+
+
+
